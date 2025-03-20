@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e711e300aeb7b6847a4733c9dfc3c1f3, type: 3}
+  m_Name: BountyTable
+  m_EditorClassIdentifier: 
+  BountyList:
+  - {fileID: 1937672015582658789, guid: 0b99f67d36da4704c8f275724620190c, type: 3}
+  - {fileID: 3630616838294122007, guid: b0d5fd01cc1daa146b7705eabc44ccea, type: 3}

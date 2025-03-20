@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3703ec80b778304f93afb0502e4a16e, type: 3}
+  m_Name: Skill_W1_HeavyRain
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 6176013248800797232, guid: d54473a8a76956544b06d11eeb720201, type: 3}
+  Name: "\uD3ED\uC6B0"
+  Description: "\uCD5C\uB300 5\uB9C8\uB9AC\uC758 \uC801\uC744 \uD1B5\uACFC\uD560
+    \uC218 \uC788\uB294 \uAC15\uD654\uB41C \uBB3C\uBC29\uC6B8\uC744 \uB358\uC838
+    \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+  Cooldown: 3
+  AttackPower: 400
+  AttackType: 2
+  Rarity: 1
+  Attribute: 2
+  ProjectilePrefab: {fileID: 5955895809516348532, guid: 1d7823445c1642f40a1a6a63c2f055d4, type: 3}

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914031185e31db542936441993af8e8b, type: 3}
+  m_Name: SkillTable
+  m_EditorClassIdentifier: 
+  RockSkills:
+  - {fileID: 11400000, guid: a693af909edeb3845b0660b02573b17c, type: 2}
+  - {fileID: 11400000, guid: 70f1fd31ae7bdd142b6df3bb632f1274, type: 2}
+  - {fileID: 11400000, guid: dbc7ff8ca33c1ad458267bf8102d10cd, type: 2}
+  - {fileID: 11400000, guid: add72bfa7916d744bb72d24be7e698b6, type: 2}
+  - {fileID: 11400000, guid: 4ce18dcfcaafc8c42af958d6003ad065, type: 2}
+  - {fileID: 11400000, guid: 9123921cbfb02d840be31871df6677eb, type: 2}
+  FireSkills:
+  - {fileID: 11400000, guid: 9aa01c8efd022164497fc3d3e53a0bda, type: 2}
+  - {fileID: 11400000, guid: f5f28fb8bc2770e4fae74e956ab4c4ac, type: 2}
+  - {fileID: 11400000, guid: 796081049cd9baf4aa15421933061d59, type: 2}
+  - {fileID: 11400000, guid: b7e85cac6ce0167488c4662093fa2d4e, type: 2}
+  - {fileID: 11400000, guid: a246457040765ed498e0102c533cca36, type: 2}
+  - {fileID: 11400000, guid: cbdf35dad8adb824cbc60130f2415c14, type: 2}
+  WaterSkills:
+  - {fileID: 11400000, guid: 0179a874cc8492642a5574b9ce5e01b6, type: 2}
+  - {fileID: 11400000, guid: 2f9e940f2c5c81a47b6be05dc39706e7, type: 2}
+  - {fileID: 11400000, guid: 9919b11483b200a45baa910eee525fbc, type: 2}
+  - {fileID: 11400000, guid: a05f9bb44c4ddcf4b993a24f3cf2e144, type: 2}
+  - {fileID: 11400000, guid: 761192fcb6bb9f143b8b56203ecf58f9, type: 2}
+  - {fileID: 11400000, guid: 92e613bb75b724f419c984b3c9e64993, type: 2}

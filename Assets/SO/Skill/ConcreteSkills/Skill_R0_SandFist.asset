@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb9d6d6ab214b74596839a9ca15f80b, type: 3}
+  m_Name: Skill_R0_SandFist
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 9073691188321143400, guid: 036e4ed5f29a97b4a92bc074307dbcdd, type: 3}
+  Name: "\uBAA8\uB798\uC8FC\uBA39"
+  Description: "\uBAA8\uB798\uC8FC\uBA39\uC73C\uB85C \uADFC\uC811\uD55C \uC801\uC5D0\uAC8C
+    \uBC94\uC704 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+  Cooldown: 1.3
+  AttackPower: 200
+  AttackType: 0
+  Rarity: 0
+  Attribute: 0
+  ProjectilePrefab: {fileID: 5691409616270606610, guid: 0584919c350c636479059729acf0405c, type: 3}

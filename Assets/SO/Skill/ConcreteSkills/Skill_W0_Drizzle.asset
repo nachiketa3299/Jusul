@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b32b7381df3e3c40afe32ae2ff3487a, type: 3}
+  m_Name: Skill_W0_Drizzle
+  m_EditorClassIdentifier: 
+  Icon: {fileID: -2879800026531844620, guid: c14f63a23b4493b48a17a5e9faf5cfdd, type: 3}
+  Name: "\uAC00\uB791\uBE44"
+  Description: "\uBB3C\uBC29\uC6B8\uC744 \uB358\uC838 \uCC98\uC74C \uB9DE\uB294 \uC801\uC5D0\uAC8C
+    \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4"
+  Cooldown: 0.8
+  AttackPower: 110
+  AttackType: 2
+  Rarity: 0
+  Attribute: 2
+  ProjectilePrefab: {fileID: 4933047223297799918, guid: 56047af12fb49ee409ca0a1d612ef7aa, type: 3}

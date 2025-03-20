@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d2f2ea26cc024682ab54894541ad7, type: 3}
+  m_Name: Skill_W4_IceLightning
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 6861960535875740076, guid: 8a643cd73ee4cb04e9b212a047b21a27, type: 3}
+  Name: "\uC5BC\uC74C\uBC88\uAC1C"
+  Description: "\uCCB4\uB825\uC774 \uAC00\uC7A5 \uB192\uC740 \uC801\uC5D0\uAC8C \uC5BC\uC74C\uBC88\uAC1C\uB97C
+    \uB0B4\uB824\uCCD0 \uAC15\uD55C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+  Cooldown: 1.5
+  AttackPower: 75000
+  AttackType: 2
+  Rarity: 4
+  Attribute: 2
+  ProjectilePrefab: {fileID: 0}

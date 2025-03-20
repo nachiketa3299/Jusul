@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323eddbced47eda48ae44f5535ab6b25, type: 3}
+  m_Name: Skill_R5_Earthquake
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 2670404818650006485, guid: 62bf711b8d9906b4da70b02d8b59ff98, type: 3}
+  Name: "\uC9C0\uC9C4"
+  Description: "\uB300\uC9C0\uC758 \uBC1C\uBC14\uB2E5\uC73C\uB85C \uADFC\uC811\uD55C
+    \uC801\uC5D0\uAC8C 100%\uC758 \uBC94\uC704 \uD53C\uD574\uB97C \uC8FC\uACE0, \uB098\uBA38\uC9C0
+    \uBAA8\uB4E0 \uC801\uC5D0\uAC8C 10%\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+  Cooldown: 10
+  AttackPower: 320000
+  AttackType: 0
+  Rarity: 5
+  Attribute: 0
+  ProjectilePrefab: {fileID: 0}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6b90fcb4fc18f4b864a900d7b064ee, type: 3}
+  m_Name: Skill_F0_Charcoal
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 6511215018397966378, guid: 07728262b242bbf45bc09dac229a60dc, type: 3}
+  Name: "\uC22F\uB369\uC774"
+  Description: "\uC22F\uB369\uC774\uB97C \uB358\uC838 \uCC98\uC74C \uB9DE\uB294 \uC801\uC5D0\uAC8C
+    \uC791\uC740 \uBC94\uC704 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+  Cooldown: 3.2
+  AttackPower: 300
+  AttackType: 2
+  Rarity: 0
+  Attribute: 1
+  ProjectilePrefab: {fileID: 6976115250351702901, guid: 24926053b2e3af14fbe0bfffd7a05d57, type: 3}

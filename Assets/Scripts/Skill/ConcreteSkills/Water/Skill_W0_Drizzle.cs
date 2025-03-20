@@ -1,0 +1,25 @@
+using UnityEngine;
+
+namespace Jusul
+{
+  [CreateAssetMenu(fileName ="Skill_W0_Drizzle", menuName ="Jusul/Skill/W0_Drizzle")]
+  public class SKill_W0_Drizzle : SkillBase
+  {
+    float _offsetX = 0.1f;
+
+    public override void Fire(Character caster, int laneIndex)
+    {
+      // 좌, 중, 우로 살짝 다른 오프셋에서 생성
+      int randomPositionIndex = Random.Range(-1, 2);
+
+      Vector3 castingPosition = caster.CastingPosition.position;
+      castingPosition.x += randomPositionIndex * _offsetX;
+
+      ProjectileBase projectile = Instantiate(ProjectilePrefab, castingPosition, Quaternion.identity);
+      projectile.Initialize(laneIndex, this);
+
+      projectile.Activate();
+    }
+
+  }
+}

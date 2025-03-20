@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5f8f14746175c4aa536b8319cef792, type: 3}
+  m_Name: EnhanceLevelCostTable
+  m_EditorClassIdentifier: 
+  LevelsAt:
+  - PurchaseLevel: 75
+    RockSkillLevel: 1
+    FireSkillLevel: 1
+    WaterSkillLevel: 1
+    CryptidLevel: 1
+  - PurchaseLevel: 150
+    RockSkillLevel: 2
+    FireSkillLevel: 2
+    WaterSkillLevel: 2
+    CryptidLevel: 2
+  - PurchaseLevel: 225
+    RockSkillLevel: 3
+    FireSkillLevel: 3
+    WaterSkillLevel: 3
+    CryptidLevel: 3
+  - PurchaseLevel: 300
+    RockSkillLevel: 4
+    FireSkillLevel: 4
+    WaterSkillLevel: 4
+    CryptidLevel: 4
+  - PurchaseLevel: 375
+    RockSkillLevel: 5
+    FireSkillLevel: 5
+    WaterSkillLevel: 5
+    CryptidLevel: 5
