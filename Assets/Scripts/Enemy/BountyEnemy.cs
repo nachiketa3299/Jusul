@@ -20,9 +20,8 @@ namespace Jusul
 
     public override void Initialize(int laneIndex)
     {
-      _laneIndex = laneIndex;
-      _currentHealth = _maxHealth;
-      _healthBar.value = Mathf.Clamp01((float)_currentHealth / _maxHealth);
+      base.Initialize(laneIndex);
+
       _healthBar.gameObject.SetActive(true);
     }
 
@@ -39,9 +38,9 @@ namespace Jusul
       }
     }
 
-    public override void Advance()
+    public override void StartAdvanceRoutine()
     {
-      base.Advance();
+      base.StartAdvanceRoutine();
       StartCoroutine(TimeLimitRoutine());
     }
 

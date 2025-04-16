@@ -2,79 +2,103 @@ using UnityEngine;
 
 namespace Jusul
 {
-  public class PlayerController : JCharacterController
+  /// <summary>
+  /// (싱글턴) 플레이어의 컨트롤러
+  /// UI로 JCharacterController의 기능에 접근
+  /// </summary>
+  public class PlayerController : JusulCharacterControllerBase
   {
-    [Header("UI Connection")][Space]
+    [Header("UI 연결")][Space]
     [SerializeField] SkillUpgradeTable _skillUpgradeTable;
 
     static PlayerController _instance;
     public static PlayerController Instance => _instance;
 
-
-    public void MineSkillByButton(MineButton button, SkillRarity rarity, int soulCost)
+    public bool TryPurchaseSkillByUI(SkillPurchaseButton purchaseButton)
     {
-      SkillBase minedSkill = TryMineSkill(rarity, soulCost);
-
-      if (minedSkill == null)
+      if (TryPurchaseSkill(out SkillBase purchasedSkill))
       {
-        return;
+        SkillUpgradeButton purchasedButton = _skillUpgradeTable.GetButtonBySkill(purchasedSkill);
+
+        // 빔 이펙트 지연 업데이트
+        BeamEffectManager.Instance.StartBeamEffect
+        (
+          purchaseButton.transform.position, 
+          purchasedButton.transform.position, 
+          () => { _skillUpgradeTable.UpdateSkillCount(purchasedSkill); }
+        );
+
+        return true;
       }
-
-      SkillUpgradeButton targetButton
-        = _skillUpgradeTable.GetUpgradeButtonBySkill(minedSkill);
-
-      BeamEffectManager.Instance.SpawnBeam(button, targetButton);
+      else
+      {
+        return false;
+      }
     }
 
-    public void TryPurchaseSkillByButton(SkillRandomPurchaseButton button)
+    public bool TryUpgradeSkillByUI(SkillBase skillToUpgrade, SkillUpgradeButton upgradeButton)
     {
-      // 구매한 스킬이 무엇인지 확인
-      SkillBase purchasedSkill = TryPurchaseSkill();
-
-      if (purchasedSkill == null)
+      if (TryUpgradeSkill(in skillToUpgrade, out SkillBase upgradedSkill))
       {
-        return;
+        SkillUpgradeButton upgradedButton = _skillUpgradeTable.GetButtonBySkill(upgradedSkill);
+
+        // 업그레이드 이전 스킬 UI 업데이트를 강제로 발생시킴
+        _skillUpgradeTable.UpdateSkillCount(skillToUpgrade);
+
+        // 빔 이펙트 지연 업데이트
+        BeamEffectManager.Instance.StartBeamEffect
+        (
+          upgradeButton.transform.position, 
+          upgradedButton.transform.position, 
+          () => { _skillUpgradeTable.UpdateSkillCount(upgradedSkill); }
+        );
+
+        return true;
       }
-
-      // 빔이 도달할 버튼
-      SkillUpgradeButton targetButton 
-        = _skillUpgradeTable.GetUpgradeButtonBySkill(purchasedSkill);
-
-      // 빔이 도달한 후 UI 업데이트가 이루어져야 함
-      // (항상 타겟 버튼만 지연되어서 업데이트 되면 됨)
-      BeamEffectManager.Instance.SpawnBeam(button, targetButton);
+      else
+      {
+        return false;
+      }
     }
 
-    public void TryUpgradeSkillByButton(SkillBase skill, SkillUpgradeButton button)
+    public bool TryMineSkillByUI(MineButton mineButton, SkillRarity rarity, int soulCost)
     {
-      // 업그레이드한 스킬이 무엇인지 확인
-      SkillBase upgradedSkill = TryUpgradeSkill(skill);
-
-      if (upgradedSkill == null)
+      if (TryMineSkill(in rarity, in soulCost, out SkillBase minedSkill))
       {
-        return;
-      }
+        SkillUpgradeButton minedButton = _skillUpgradeTable.GetButtonBySkill(minedSkill);
 
-      // 빔이 도달할 버튼
-      SkillUpgradeButton targetButton 
-        = _skillUpgradeTable.GetUpgradeButtonBySkill(upgradedSkill);
-      
-      // 빔이 도달한 후에야 UI 업데이트가 이루어져야 함
-      // (항상 타겟 버튼만 지연되어서 업데이트 되면 됨)
-      BeamEffectManager.Instance.SpawnBeam(button, targetButton);
+        // 빔 이펙트 지연 업데이트
+        BeamEffectManager.Instance.StartBeamEffect
+        (
+          mineButton.transform.position,
+          minedButton.transform.position,
+          () => { _skillUpgradeTable.UpdateSkillCount(minedSkill); }
+        );
+
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
 
+    public bool TrySpawnBountyByUI(BountyEnemy bountyEnemy)
+    {
+      return TrySpawnBounty(bountyEnemy);
+    }
+
+    public bool TryEnhanceSkillAttributeLevelByUI(in SkillAttribute attribute)
+    {
+      return TryEnhanceSkillAttributeLevel(attribute);
+    }
+
+    // 싱글턴으로 만들어주는 작업
     protected override void Awake()
     {
       _instance = this;
 
       base.Awake();
     }
-
-    void Start()
-    {
-      _skillUpgradeTable.Initialize(_skillCounts);
-    }
-
   }
 }

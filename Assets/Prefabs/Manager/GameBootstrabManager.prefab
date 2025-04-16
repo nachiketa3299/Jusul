@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7701495691847503402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7103224664783556073}
+  - component: {fileID: 6564518063231118322}
+  m_Layer: 0
+  m_Name: GameBootstrabManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7103224664783556073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7701495691847503402}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6564518063231118322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7701495691847503402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2390f175cc49ac64884b02065a335d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterModelPrefab: {fileID: 106424264903456056, guid: 49ad1361486d3d74aa53d199459d2d2c, type: 3}
+  _playerInfo: {fileID: 11400000, guid: be9db81cd1602614c9d6a03d5549bc37, type: 2}
+  _otherPlayerInfos:
+  - {fileID: 11400000, guid: e096d09f0e1425b4684e58aa6599b679, type: 2}
+  - {fileID: 11400000, guid: 001cbf1b6b4ff0d4fa7b21be8ac5dc7f, type: 2}
+  - {fileID: 11400000, guid: ea3aa7b24f2e27d4192556bab8f6338d, type: 2}
+  - {fileID: 11400000, guid: 41f2a42f6747c3346921b4d9fcbeb5fd, type: 2}
+  - {fileID: 11400000, guid: 8132b036e0802564b9d7045cf3b16524, type: 2}
+  _aiControllerPrefab: {fileID: -596057572387722990, guid: 7f5bd0b2d29594c419ef5f88d77fc56d, type: 3}
+  _playerController: {fileID: 0}

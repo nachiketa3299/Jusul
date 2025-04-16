@@ -1,32 +1,10 @@
-using System;
 using UnityEngine;
 
 namespace Jusul
 {
-  public enum SkillRarity
-  {
-    Normal = 0, 
-    Rare, 
-    Hero, 
-    Legend, 
-    Acient, 
-    Chunbul
-  }
-
-  public enum SkillAttribute
-  {
-    Rock=0, 
-    Fire,
-    Water
-  }
-
-  public enum SkillAttackType
-  {
-    Near=0,
-    Mid,
-    Far
-  }
-
+  /// <summary>
+  /// 스킬의 데이터를 저장하는 SO의 베이스 클래스로, 여기서 유도하여 구체 스킬을 제작한다.
+  /// </summary>
   public abstract class SkillBase : ScriptableObject
   {
     public Sprite Icon;
@@ -40,6 +18,6 @@ namespace Jusul
 
     public ProjectileBase ProjectilePrefab;
 
-    public virtual void Fire(Character caster, int laneIndex) { }
+    public virtual void Fire(CharacterModel caster, int laneIndex, int finalDamage) { }
   }
 }

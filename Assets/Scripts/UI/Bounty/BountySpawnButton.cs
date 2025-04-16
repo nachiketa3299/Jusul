@@ -57,7 +57,7 @@ namespace Jusul
 
     void BountySpawnButton_ButtonClicked()
     {
-      PlayerController.Instance.TrySpawnBounty(_enemyPrefab);
+      PlayerController.Instance.TrySpawnBountyByUI(_enemyPrefab);
     }
   }
 }

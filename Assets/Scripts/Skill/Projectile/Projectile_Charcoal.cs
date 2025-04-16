@@ -47,7 +47,7 @@ namespace Jusul
             if (inRadiusEnemy.LaneIndex == _laneIndex)
             {
               DamageIndicationManager.Instance.IndicateDamage(_skillBase, enemy);
-              inRadiusEnemy.ApplyDamage(_skillBase.AttackPower);
+              inRadiusEnemy.ApplyDamage(_finalDamage);
             }
           }
         }

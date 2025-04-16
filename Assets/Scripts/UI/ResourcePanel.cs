@@ -7,45 +7,51 @@ namespace Jusul
   [DisallowMultipleComponent]
   public class ResourcePanel : MonoBehaviour
   {
-    [Header("하위 텍스트와 연결")][Space]
+    [Header("플레이어 연결")][Space]
+    [SerializeField] ResourceModule _resourceModule;
+    [SerializeField] SkillModule _skillModule;
 
+    [Header("하위 텍스트와 연결")][Space]
     [SerializeField] TMP_Text _totalGold;
     [SerializeField] TMP_Text _totalSoul;
     [SerializeField] TMP_Text _totalSkillCount;
 
-    void ResourcePanel_GoldAmountChanged(int amount)
+    void OnGoldAmountChanged(int prev, int current)
     {
-      _totalGold.text = $"{amount}";
+      _totalGold.text = current.ToString();
     }
 
-    void ResourcePanel_SoulAmountChanged(int amount)
+    void OnSoulAmountChanged(int prev, int current)
     {
-      _totalSoul.text = $"{amount}";
+      _totalSoul.text = current.ToString();
     }
 
-    void ResourcePanel_TotalSkillCountChanged( int amount, int total)
+    void OnTotalSkillCountInitialized(int totalSkillCount, int maxSkillCount)
     {
-      _totalSkillCount.text = $"{amount}/{total}";
+      OnTotalSkillCountChanged(totalSkillCount, maxSkillCount);
     }
 
-    void Start()
+    void OnTotalSkillCountChanged(int totalSkillCount, int maxSkillCount)
     {
-      PlayerController.Instance.GoldAmountChanged 
-        += ResourcePanel_GoldAmountChanged;
-      PlayerController.Instance.SoulAmountChanged 
-        += ResourcePanel_SoulAmountChanged;
-      PlayerController.Instance.TotalSkillCountChanged 
-        += ResourcePanel_TotalSkillCountChanged;
+      _totalSkillCount.text = $"{totalSkillCount}/{maxSkillCount}";
+    }
+
+    void Awake()
+    {
+      _skillModule.TotalSkillCountInitialized += OnTotalSkillCountInitialized;
+      _skillModule.TotalSkillCountChanged += OnTotalSkillCountChanged;
+
+      _resourceModule.GoldAmountChanged += OnGoldAmountChanged;
+      _resourceModule.SoulAmountChanged += OnSoulAmountChanged;
     }
 
     void OnDestroy()
     {
-      PlayerController.Instance.GoldAmountChanged 
-        -= ResourcePanel_GoldAmountChanged;
-      PlayerController.Instance.SoulAmountChanged 
-        -= ResourcePanel_SoulAmountChanged;
-      PlayerController.Instance.TotalSkillCountChanged 
-        -= ResourcePanel_TotalSkillCountChanged;
+      _skillModule.TotalSkillCountInitialized -= OnTotalSkillCountInitialized;
+      _skillModule.TotalSkillCountChanged -= OnTotalSkillCountChanged;
+
+      _resourceModule.GoldAmountChanged -= OnGoldAmountChanged;
+      _resourceModule.SoulAmountChanged -= OnSoulAmountChanged;
     }
   }
 }

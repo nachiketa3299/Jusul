@@ -1,28 +1,33 @@
-using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework.Constraints;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+
 using UnityEngine;
 
 
 namespace Jusul
 {
+  /// <summary>
+  /// 게임 시작시 전체 초기화를 담당
+  /// </summary>
   [DisallowMultipleComponent]
   public class GameBootstrapManager : MonoBehaviour
   {
-    [Header("Player Infos")][Space]
+    [Header("캐릭터 프리팹")][Space]
+    [SerializeField] CharacterModel _characterModelPrefab;
+
+    [Header("게임 참여 플레이어 정보")][Space]
     [SerializeField] PlayerInfo _playerInfo;
     [SerializeField] List<PlayerInfo> _otherPlayerInfos = new();
 
-    [Header("AI Controller")][Space]
+    [Header("AI 컨트롤러 프리팹")][Space]
     [SerializeField] AIController _aiControllerPrefab;
 
-    [Header("Player Controller")][Space]
+    [Header("플레이어 컨트롤러 씬 레퍼런스")][Space]
     [SerializeField] PlayerController _playerController;
 
-    List<JCharacterController> _controllerLaneOrder = new(4);
+    List<JusulCharacterControllerBase> _controllerLaneOrder = new(4);
 
-    void Awake()
+    void Start()
     {
       // 플레이어 생성 및 컨트롤러 연결
 
@@ -35,7 +40,9 @@ namespace Jusul
       // 다른 플레이어 목록 중 랜덤으로 3개 추출
       HashSet<int> selectedIndices = new();
       while (selectedIndices.Count < 3) 
+      {
         selectedIndices.Add(Random.Range(0, _otherPlayerInfos.Count));
+      }
 
       foreach (int idx in selectedIndices)
       {
@@ -62,22 +69,19 @@ namespace Jusul
 
       for (int laneIndex = 0; laneIndex < _controllerLaneOrder.Count; ++laneIndex)
       {
-        JCharacterController controller = _controllerLaneOrder[laneIndex];
+        JusulCharacterControllerBase controller = _controllerLaneOrder[laneIndex];
 
         if (controller is PlayerController)
         {
-          controller.Initialize(laneIndex, _playerInfo);
+          controller.InitializeOnStart(laneIndex, _characterModelPrefab, _playerInfo);
         }
         else
         {
-          controller.Initialize(laneIndex, _otherPlayerInfos[randomAIPlayerIndices[otherIndex]]);
+          controller.InitializeOnStart(laneIndex, _characterModelPrefab, _otherPlayerInfos[randomAIPlayerIndices[otherIndex]]);
           ++otherIndex;
         }
       }
-    }
 
-    void Start()
-    {
       // 레인 매니저가 싱글턴이라 여기서 수행
       for (int laneIndex = 0; laneIndex < 4; ++laneIndex)
       {

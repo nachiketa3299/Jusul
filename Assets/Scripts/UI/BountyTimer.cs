@@ -9,6 +9,9 @@ namespace Jusul
   [DisallowMultipleComponent]
   public class BountyTimer : MonoBehaviour
   {
+    [Header("플레이어 연결")][Space]
+    [SerializeField] BountyModule _bountyModule;
+
     [Header("Roots")][Space]
     [SerializeField] RectTransform _timerRoot;
     [SerializeField] RectTransform _notifierRoot;
@@ -20,25 +23,22 @@ namespace Jusul
     {
       _notifierRoot.gameObject.SetActive(false);
       _timerRoot.gameObject.SetActive(true);
-    }
 
-    void Start()
-    {
-      PlayerController.Instance.BountyCooldownStarted
+      _bountyModule.BountyCooldownStarted
         += BountyTimer_BountyCooldownStarted;
-      PlayerController.Instance.BountyCooldownPassed
+      _bountyModule.BountyCooldownPassed
         += BountyTimer_BountyCooldownPassed;
-      PlayerController.Instance.BountyCooldownEnded
+      _bountyModule.BountyCooldownEnded
         += BountyTimer_BountyCooldownEnded;
     }
 
     void OnDestory()
     {
-      PlayerController.Instance.BountyCooldownStarted
+      _bountyModule.BountyCooldownStarted
         -= BountyTimer_BountyCooldownStarted;
-      PlayerController.Instance.BountyCooldownPassed
+      _bountyModule.BountyCooldownPassed
         -= BountyTimer_BountyCooldownPassed;
-      PlayerController.Instance.BountyCooldownEnded
+      _bountyModule.BountyCooldownEnded
         -= BountyTimer_BountyCooldownEnded;
     }
 

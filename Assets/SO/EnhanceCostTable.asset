@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5f8f14746175c4aa536b8319cef792, type: 3}
+  m_Name: EnhanceCostTable
+  m_EditorClassIdentifier: 
+  CostAtLevel:
+  - PurchaseEnhanceCost: 10
+    RockEnhanceCost: 1
+    WaterEnhanceCost: 1
+    FireEnhanceCost: 1
+    CryptidEnhanceCost: 1
+  - PurchaseEnhanceCost: 20
+    RockEnhanceCost: 2
+    WaterEnhanceCost: 2
+    FireEnhanceCost: 2
+    CryptidEnhanceCost: 2
+  - PurchaseEnhanceCost: 30
+    RockEnhanceCost: 3
+    WaterEnhanceCost: 3
+    FireEnhanceCost: 3
+    CryptidEnhanceCost: 3

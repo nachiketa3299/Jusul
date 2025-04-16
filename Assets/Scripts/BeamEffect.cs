@@ -19,23 +19,26 @@ namespace Jusul
     Vector3 _end;
     Vector3 _control;
 
+    event Action _onHit;
+
     SkillUpgradeButton _targetButton;
 
-    public void Initialize(Vector3 start, SkillUpgradeButton endButton)
+    public void Initialize(Vector3 start, Vector3 end, Action onHit)
     {
       _start = start;
-      _start.z = -2;
+      _end = end;
 
-      _end = endButton.transform.position;
-      _end.z = -2;
 
       _elapsedTime = 0.0f;
 
-      _targetButton = endButton;
+      // _targetButton = endButton;
 
       Vector3 mid = (_start + _end) * 0.5f;
-      _control = mid + Vector3.up * Vector3.Distance(_start, _end) * _controlCoefficient;
-      _control.z = -2;
+      _control = mid + _controlCoefficient * Vector3.Distance(_start, _end) * Vector3.up;
+
+      _start.z = _end.z = _control.z = -2;
+
+      _onHit = onHit;
     }
 
     public void Activate()
@@ -60,6 +63,7 @@ namespace Jusul
         if (ratio >= 1.0f)
         {
           // 도착
+          _onHit?.Invoke();
           Destroy(gameObject);
         }
 
@@ -67,9 +71,5 @@ namespace Jusul
       }
     }
 
-    void OnDestroy()
-    {
-      _targetButton.RefreshSkillCount();
-    }
   }
 }

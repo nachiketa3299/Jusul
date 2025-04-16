@@ -43,8 +43,8 @@ namespace Jusul
       SkillRarity.Rare => "희귀",
       SkillRarity.Hero => "영웅",
       SkillRarity.Legend => "전설",
-      SkillRarity.Acient => "선조",
-      SkillRarity.Chunbul => "천벌",
+      SkillRarity.Ancestor => "선조",
+      SkillRarity.Scourge => "천벌",
       _ => "오류"
     };
 

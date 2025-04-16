@@ -40,15 +40,21 @@ namespace Jusul
     protected bool _deathByCharacter = false;
     bool _hasAttacked = false;
 
+    Transform _stopPivot;
+
     public virtual void Initialize(int laneIndex)
     {
       _laneIndex = laneIndex;
+
       _currentHealth = _maxHealth;
+
       _healthBar.value = Mathf.Clamp01((float)_currentHealth / _maxHealth);
       _healthBar.gameObject.SetActive(false);
+
+      _stopPivot = LaneManager.Instance.GetLaneAt(_laneIndex).EnemyStopPivot;
     }
 
-    public virtual void Advance()
+    public virtual void StartAdvanceRoutine()
     {
       StartCoroutine(AdvanceRoutine());
     }
@@ -72,19 +78,13 @@ namespace Jusul
       }
     }
 
-    bool HasArrived(Transform destination)
-    {
-      return (destination.position - transform.position).sqrMagnitude <= _range * _range;
-    }
-
     IEnumerator AdvanceRoutine()
     {
-      Lane lane = LaneManager.Instance.GetLaneAt(LaneIndex);
-      Transform characterPivot = lane.CharacterPivot;
-
-      while (!HasArrived(characterPivot))
+      while (Vector2.Distance(_stopPivot.position, transform.position) > 0.1f)
       {
-        transform.Translate(_speed * Time.deltaTime * Vector2.up);
+        Vector2 direction = (_stopPivot.position - transform.position).normalized;
+        transform.Translate(_speed * Time.deltaTime * direction);
+
         yield return null;
       }
 
@@ -94,7 +94,7 @@ namespace Jusul
 
     IEnumerator AttackRoutine()
     {
-      Character character = LaneManager.Instance.GetCharacterAtLane(_laneIndex);
+      CharacterModel character = LaneManager.Instance.GetCharacterAtLane(_laneIndex);
 
       while (!character.IsDied)
       {
@@ -113,7 +113,6 @@ namespace Jusul
       Destroy(gameObject, 2f);
     }
 
-
     void OnDestroy()
     {
       LaneManager.Instance.RemoveEnemyAtLane(_laneIndex, this);
@@ -127,7 +126,6 @@ namespace Jusul
 
     public void SetStatusEffect(StatusEffect statusEffect)
     {
-
     }
   }
 }

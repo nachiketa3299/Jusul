@@ -33,7 +33,7 @@ namespace Jusul
         if (enemy.LaneIndex == _laneIndex)
         {
           DamageIndicationManager.Instance.IndicateDamage(_skillBase, enemy);
-          enemy.ApplyDamage(_skillBase.AttackPower);
+          enemy.ApplyDamage(_finalDamage);
           Destroy(gameObject);
         }
       }

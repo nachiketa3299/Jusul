@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5941213936190516034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6826058425285914469}
+  - component: {fileID: 1077519970174763603}
+  - component: {fileID: 6967308562396263551}
+  - component: {fileID: 181342664630970437}
+  - component: {fileID: 165189301766878298}
+  m_Layer: 0
+  m_Name: Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6826058425285914469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941213936190516034}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1077519970174763603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941213936190516034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b250e19effe5334e9c0bf0db70fd908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSkillCount: 20
+  _skillTable: {fileID: 11400000, guid: 0bb91269dd4a20343a1511cae0fac5f1, type: 2}
+  _skillEnhanceRateTable: {fileID: 11400000, guid: c954e572ce4004442936ab9c7727be20, type: 2}
+  _skillRarityProbability: {fileID: 11400000, guid: e98af14eb3ed89f479b10512fc3babf9, type: 2}
+  _initialSkillPurchasePrice: 20
+--- !u!114 &6967308562396263551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941213936190516034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea8f5aa00d14f54fa9794441988d33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialGoldAmount: 100
+  _initialSoulAmount: 2
+--- !u!114 &181342664630970437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941213936190516034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8981b10b6be3cd4c96dc51445653c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bountyCooldownSeconds: 10
+  _bountyTable: {fileID: 11400000, guid: 80f3da6a636b8394a9602e9d02caef6a, type: 2}
+--- !u!114 &165189301766878298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941213936190516034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9217402606925274c8c7fc8dcccf345d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enhanceCostTable: {fileID: 11400000, guid: 9c80cb39c6529124b9f6e0ccdaf2c784, type: 2}

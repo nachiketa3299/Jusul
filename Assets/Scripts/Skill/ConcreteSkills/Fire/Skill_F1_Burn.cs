@@ -11,9 +11,9 @@ namespace Jusul
   {
     int _maxAttempt = 3;
 
-    public override void Fire(Character caster, int laneIndex)
+    public override void Fire(CharacterModel caster, int laneIndex, int finalDamage)
     {
-      base.Fire(caster, laneIndex);
+      base.Fire(caster, laneIndex, finalDamage);
 
       // 레인에서 적들 리스트 가져오기
 

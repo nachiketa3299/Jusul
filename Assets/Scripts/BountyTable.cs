@@ -8,7 +8,7 @@ namespace Jusul
   {
     public List<BountyEnemy> BountyList = new();
 
-    public BountyEnemy PickRandomBounty()
+    public BountyEnemy PickRandomBountyEnemy()
     {
       return BountyList[Random.Range(0, BountyList.Count)];
     }

@@ -12,6 +12,27 @@ namespace Jusul
     public List<SkillBase> FireSkills = new();
     public List<SkillBase> WaterSkills = new();
 
+    public IEnumerable<SkillBase> AllSkills
+    {
+      get 
+      {
+        foreach(SkillBase skill in RockSkills) 
+        {
+          yield return skill;
+        }
+
+        foreach(SkillBase skill in FireSkills) 
+        {
+          yield return skill;
+        }
+
+        foreach(SkillBase skill in WaterSkills) 
+        {
+          yield return skill;
+        }
+      }
+    }
+
     public SkillBase GetSkill(SkillAttribute attribute, SkillRarity rarity)
     {
       switch (attribute)

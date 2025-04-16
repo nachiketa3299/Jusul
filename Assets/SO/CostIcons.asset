@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabdb3bace6a6cd42bd39fe2a6e7d7ee, type: 3}
+  m_Name: CostIcons
+  m_EditorClassIdentifier: 
+  IconOnSoul: {fileID: 585027174027091864, guid: 312cdf195d89d384cb9bdc5cc327dca8, type: 3}
+  IconOnGold: {fileID: -4305315635791375800, guid: 17e023c529d87d04c9047781a8685f3f, type: 3}

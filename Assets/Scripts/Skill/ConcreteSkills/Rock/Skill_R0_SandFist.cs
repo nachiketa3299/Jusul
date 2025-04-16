@@ -20,20 +20,17 @@ namespace Jusul
       0.0f, 0.1f, 0.2f
     };
 
-    public override void Fire(Character caster, int laneIndex)
+    public override void Fire(CharacterModel caster, int laneIndex, int finalDamage)
     {
       List<ProjectileBase> projectiles = new();
 
       for (int i = 0; i < _offsets.Count; ++i)
       {
         ProjectileBase projectile = Instantiate(ProjectilePrefab);
-        projectile.Initialize(laneIndex, this);
+        projectile.Initialize(laneIndex, this, finalDamage);
 
         // 부모 좌표 + 오프셋을 월드 기준으로 설정
         projectile.transform.position = caster.CastingPosition.position + _offsets[i];
-
-        // projectile.transform.SetParent(caster.CastingPosition);
-        // projectile.transform.position += _offsets[i];
 
         projectile.gameObject.SetActive(false);
 

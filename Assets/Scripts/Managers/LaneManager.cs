@@ -6,7 +6,7 @@ namespace Jusul
 {
   public class LaneManager : MonoBehaviour
   {
-    [Header("레인 인덱스 순으로 정렬 필수")][Space]
+    [Header("레인 씬 레퍼런스(인덱스 순으로 정렬)")][Space]
     [SerializeField] List<Lane> _lanes = new(4);
 
     static LaneManager _instance;
@@ -42,17 +42,17 @@ namespace Jusul
       _lanes[laneIndex].PopEnemy(enemy);
     }
 
-    public void SetCharacterAtLane(int laneIndex, Character character)
+    public void SetCharacterAtLane(int laneIndex, CharacterModel character)
     {
       _lanes[laneIndex].SetCharacter(character);
     }
 
-    public Character GetCharacterAtLane(int laneIndex)
+    public CharacterModel GetCharacterAtLane(int laneIndex)
     {
       return _lanes[laneIndex].GetCharacter();
     }
 
-    public void SetLanePlayer(int laneIndex, JCharacterController controller)
+    public void SetLanePlayer(int laneIndex, JusulCharacterControllerBase controller)
     {
       _lanes[laneIndex].SetPlayer(controller);
     }

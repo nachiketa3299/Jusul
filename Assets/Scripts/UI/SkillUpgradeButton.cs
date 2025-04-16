@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 namespace Jusul
 {
+  /// <summary>
+  /// 지정된 스킬의 소유한 개수와 남은 쿨다운을 표시하고, 
+  /// 누르면 다음 등급의 스킬로 업그레이드하는 버튼
+  /// </summary>
   public class SkillUpgradeButton : ButtonBase
   {
-    [Header("Skill Settings")][Space]
+    [Header("연결된 스킬")][Space]
     [SerializeField] SkillBase _skill;
 
 
-    [Header("UI Settings")][Space]
+    [Header("하위 UI 요소 연결")][Space]
 
     [SerializeField] Image _outline;
     [SerializeField] Button _button;
@@ -31,13 +35,17 @@ namespace Jusul
 
     public SkillBase Skill => _skill;
 
-    public void Initialize(SkillUpgradeTable table)
+    /// <summary>
+    /// 테이블 및 버튼 이벤트 등록
+    /// </summary>
+    public void Initialize(SkillUpgradeTable table, int count)
     {
       _table = table;
-      _button.onClick.AddListener(SkillUpgradeButton_ButtonClicked);
+      _button.onClick.AddListener(OnClick);
+      SetCount(count);
     }
 
-    void SkillUpgradeButton_ButtonClicked()
+    void OnClick()
     {
       if (!_isFocused)
       {
@@ -47,11 +55,10 @@ namespace Jusul
       }
       else
       {
-
         if (_isUpgradableFocus)
         {
           // 업그레이드
-          PlayerController.Instance.TryUpgradeSkillByButton(_skill, this);
+          PlayerController.Instance.TryUpgradeSkillByUI(_skill, this);
         }
 
         UnfocusState();
@@ -64,7 +71,7 @@ namespace Jusul
     {
       _isFocused = true;
 
-      if (PlayerController.Instance.SkillCounts[_skill] > 0)
+      if (_table.GetSkillCount(_skill) > 0)
       {
         // Upgrade - Outline
         _upgradeOverlay.gameObject.SetActive(true);
@@ -87,7 +94,7 @@ namespace Jusul
       _outline.gameObject.SetActive(false);
     }
 
-    public void SetSkillCount(int count)
+    public void SetCount(int count)
     {
       _counter.text = count.ToString();
 
@@ -101,16 +108,12 @@ namespace Jusul
       }
     }
 
-    public void RefreshSkillCount()
-    {
-      SetSkillCount(PlayerController.Instance.SkillCounts[_skill]);
-    }
-
     public void SetSkillCooldown(float ratio)
     {
       _cooldownBar.value = ratio;
     }
 
+#if UNITY_EDITOR
     void OnValidate()
     {
       if (_skill == null)
@@ -129,6 +132,6 @@ namespace Jusul
       UnityEditor.EditorUtility.SetDirty(this);
       #endif
     }
-
+#endif
   }
 }

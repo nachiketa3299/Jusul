@@ -17,15 +17,15 @@ namespace Jusul
       _button.onClick.AddListener(MineButton_ButtonClicked);
       _costText.text = _soulCost.ToString();
 
-      PlayerController.Instance.SoulAmountChanged += MineButton_SoulAmountChanged;
+      // PlayerController.Instance.SoulAmountChanged += MineButton_SoulAmountChanged;
 
       // 초기화 시점땜에 어쩔수없음
-      MineButton_SoulAmountChanged(PlayerController.Instance.SoulAmount);
+      // MineButton_SoulAmountChanged(PlayerController.Instance.SoulAmount);
     }
 
     void MineButton_ButtonClicked()
     {
-      PlayerController.Instance.MineSkillByButton(this, _rarityToMine, _soulCost);
+      PlayerController.Instance.TryMineSkillByUI(this, _rarityToMine, _soulCost);
     }
 
     void MineButton_SoulAmountChanged(int amount)

@@ -1,62 +1,41 @@
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Jusul
 {
 
-  public class AIController : JCharacterController
+  public class AIController : JusulCharacterControllerBase
   {
     [SerializeField] float _aiUpdateInterval = 0.5f;
+
+    IEnumerator AIRoutine()
+    {
+      var aiTimer = new WaitForSeconds(_aiUpdateInterval);
+
+      while (!LaneManager.Instance.GetLaneAt(_laneIndex).IsGameOvered)
+      {
+        yield return aiTimer;
+
+        // 구매
+        TryPurchaseSkill(out SkillBase purchasedSkill);
+
+        yield return aiTimer;
+        // 업그레이드
+        if (_skillModule.TryPickSkillToUpgrade(out SkillBase skillToUpgrade))
+        {
+          TryUpgradeSkill(in skillToUpgrade, out SkillBase upgradedSkill);
+        }
+
+        yield return aiTimer;
+        // 바운티 소환
+        TrySpawnBounty(_bountyModule.PickRandomBountyEnemy());
+      }
+    }
 
     void Start()
     {
       StartCoroutine(AIRoutine());
     }
-
-    IEnumerator AIRoutine()
-    {
-      while (!LaneManager.Instance.GetLaneAt(_laneIndex).IsGameOvered)
-      {
-        yield return new WaitForSeconds(_aiUpdateInterval);
-
-        TryPurchaseSkill();
-
-        SkillBase skillToUpgrade = PickUpgradableSkill();
-
-        if (skillToUpgrade == null)
-        {
-          continue;
-        }
-
-        TryUpgradeSkill(skillToUpgrade);
-
-        TrySpawnBounty(_bountyTable.PickRandomBounty());
-      }
-    }
-
-    SkillBase PickUpgradableSkill()
-    {
-      List<SkillBase> upgradable = new();
-
-      foreach (var (skill, count) in _skillCounts)
-      {
-        if (count < 3)
-        {
-          continue;
-        }
-        upgradable.Add(skill);
-      }
-
-      if (upgradable.Count == 0)
-      {
-        return null;
-      }
-
-      int index = Random.Range(0, upgradable.Count);
-
-      return upgradable[index];
-    }
-
   }
 }
