@@ -98,6 +98,7 @@ namespace Jusul
       }
       else
       {
+        Debug.Log("다음 레벨 없습니다.");
         return false;
       }
     }

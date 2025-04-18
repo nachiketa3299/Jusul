@@ -36,12 +36,12 @@ namespace Jusul
       _buttonText.gameObject.SetActive(true);
     }
 
-    void PopUpButton_ButtonClickWhenPopUpNotOpened()
+    protected virtual void OnClickedWhenPopUpNotOpened()
     {
       PopUpMenuManager.Instance.OpenPopUp(_connectedPopUpMenu);
     }
 
-    void PopUpButton_ButtonClickWhenPopUpOpened()
+    protected virtual void OnClickedWhenPopUpOpened()
     {
       PopUpMenuManager.Instance.ClosePopUp(_connectedPopUpMenu);
     }
@@ -51,7 +51,7 @@ namespace Jusul
       MakeCloseButton(closeSprite, closeColor);
 
       _button.onClick.RemoveAllListeners();
-      _button.onClick.AddListener(PopUpButton_ButtonClickWhenPopUpOpened);
+      _button.onClick.AddListener(OnClickedWhenPopUpOpened);
     }
 
     public void ExitOpenState()
@@ -59,15 +59,15 @@ namespace Jusul
       RevertToNormalButton();
 
       _button.onClick.RemoveAllListeners();
-      _button.onClick.AddListener(PopUpButton_ButtonClickWhenPopUpNotOpened);
+      _button.onClick.AddListener(OnClickedWhenPopUpNotOpened);
     }
 
-    public virtual void Awake() 
+    protected virtual void Awake() 
     {
       _spriteWhenPopUpNotOpened = _buttonIcon.sprite;
       _colorWhenPopUpNoOpened = _buttonBackground.color;
 
-      _button.onClick.AddListener(PopUpButton_ButtonClickWhenPopUpNotOpened);
+      _button.onClick.AddListener(OnClickedWhenPopUpNotOpened);
     }
 
   }
