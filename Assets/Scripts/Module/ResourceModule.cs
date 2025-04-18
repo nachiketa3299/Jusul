@@ -68,6 +68,19 @@ namespace Jusul
       }
     }
 
+    public void AddReward(RewardEntry reward)
+    {
+      if (reward.GoldAmount > 0)
+      {
+        AddGoldAmount(reward.GoldAmount);
+      }
+
+      if (reward.SoulAmount > 0)
+      {
+        AddSoulAmount(reward.SoulAmount);
+      }
+    }
+
     public void AddGoldAmount(int goldAmount)
     {
       int prevAmount = _currentGoldAmount;

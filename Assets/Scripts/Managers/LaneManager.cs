@@ -57,7 +57,7 @@ namespace Jusul
       _lanes[laneIndex].SetPlayer(controller);
     }
 
-    public void AddRewardToPlayerAtLane(int laneIndex, Reward reward)
+    public void AddRewardToPlayerAtLane(int laneIndex, RewardEntry reward)
     {
       _lanes[laneIndex].AddRewardToPlayer(reward);
     }

@@ -13,10 +13,10 @@ namespace Jusul
 
     protected int _laneIndex;
 
-    public void Initialize(int laneIndex, SkillBase skill, int finalDamage)
+    public void Initialize(int laneIndex, SkillBase skillBase, int finalDamage)
     {
       _laneIndex = laneIndex;
-      _skillBase = skill;
+      _skillBase = skillBase;
       _finalDamage = finalDamage;
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Jusul
 {
 
-  public class EnhanceButton : ButtonBase
+  public abstract class EnhanceButton : ButtonBase
   {
 
     [Header("플레이어 연결")][Space]
@@ -25,5 +25,48 @@ namespace Jusul
 
     protected CostType _costType;
     protected int _nextLevelCost;
+
+    void UpdateTextColor(CostType costType, int amount)
+    {
+      if (_costType == costType)
+      {
+        if (_nextLevelCost <= amount) 
+        {
+          _nextLevelCostText.color = Color.white;
+        }
+        else 
+        {
+          _nextLevelCostText.color = Color.red;
+        }
+      }
+    }
+
+    protected void OnGoldAmountChanged(int prevAmount, int currentAmount)
+    {
+      UpdateTextColor(CostType.Gold, currentAmount);
+    }
+
+    protected void OnSoulAmountChanged(int prevAmount, int currentAmount)
+    {
+      UpdateTextColor(CostType.Soul, currentAmount);
+    }
+
+    protected abstract void OnClick();
+
+    protected virtual void Awake()
+    {
+      _button.onClick.AddListener(OnClick);
+
+      _resourceModule.GoldAmountChanged += OnGoldAmountChanged;
+      _resourceModule.SoulAmountChanged += OnSoulAmountChanged;
+    }
+
+    protected virtual void OnDestroy()
+    {
+      _button.onClick.RemoveAllListeners();
+
+      _resourceModule.GoldAmountChanged -= OnGoldAmountChanged;
+      _resourceModule.SoulAmountChanged -= OnSoulAmountChanged;
+    }
   }
 }

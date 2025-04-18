@@ -46,8 +46,7 @@ namespace Jusul
             // 같은 레인에 있는 경우에만 타격
             if (inRadiusEnemy.LaneIndex == _laneIndex)
             {
-              DamageIndicationManager.Instance.IndicateDamage(_skillBase, enemy);
-              inRadiusEnemy.ApplyDamage(_finalDamage);
+              inRadiusEnemy.ApplyDamage(_skillBase, _finalDamage);
             }
           }
         }

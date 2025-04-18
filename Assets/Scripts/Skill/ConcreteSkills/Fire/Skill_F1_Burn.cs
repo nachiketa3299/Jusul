@@ -9,7 +9,7 @@ namespace Jusul
   [CreateAssetMenu(fileName ="Skill_F1_Burn", menuName ="Jusul/Skill/F1_Burn")]
   public class SKill_F1_Burn : SkillBase
   {
-    int _maxAttempt = 3;
+    // int _maxAttempt = 3;
 
     public override void Fire(CharacterModel caster, int laneIndex, int finalDamage)
     {
@@ -24,19 +24,20 @@ namespace Jusul
         return;
       }
 
-      int attempt = 0;
+      // int attempt = 0;
 
-      Enemy target;
-      do
-      {
-        target = enemies[Random.Range(0, enemies.Count)];;
-        ++attempt;
-      } while (target.StatusEffect != StatusEffect.None && attempt < _maxAttempt);
+      // Enemy target;
 
-      if (target.StatusEffect == StatusEffect.None)
-      {
-        target.SetStatusEffect(StatusEffect.Burn);
-      }
+      // do
+      // {
+      //   target = enemies[Random.Range(0, enemies.Count)];;
+      //   ++attempt;
+      // } while (target.StatusEffect != StatusEffect.None && attempt < _maxAttempt);
+
+      // if (target.StatusEffect == StatusEffect.None)
+      // {
+      //   target.SetStatusEffect(StatusEffect.Burn);
+      // }
     }
   }
 }

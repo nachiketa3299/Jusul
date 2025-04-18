@@ -11,6 +11,7 @@ namespace Jusul
 
     void OnSkillAttributeLevelInitialized(SkillAttribute attribute, int initLevel)
     {
+      // 이 버튼이 담당한 속성이 아니면 넘어가기
       if (attribute != _attributeToEnhance)
       {
         return;
@@ -23,13 +24,14 @@ namespace Jusul
         _costType = costType;
         _nextLevelCost = nextLevelCost;
 
-        _costIcon.sprite = _costIcons.GetIconByCostType(costType);
+        _costIcon.sprite = _costIcons.GetIconByCostType(_costType);
         _nextLevelCostText.text = nextLevelCost.ToString();
       }
     }
 
     void OnSkillAttributeLevelChanged(SkillAttribute attribute, int prevLevel, int currentLevel)
     {
+      // 이 버튼이 담당한 속성이 아니면 넘어가기
       if (attribute != _attributeToEnhance)
       {
         return;
@@ -47,56 +49,25 @@ namespace Jusul
       }
     }
 
-    void UpdateTextColor(CostType costType, int amount)
-    {
-      if (_costType == costType)
-      {
-        if (_nextLevelCost <= amount) 
-        {
-          _nextLevelCostText.color = Color.white;
-        }
-        else 
-        {
-          _nextLevelCostText.color = Color.red;
-        }
-      }
-    }
-
-    void OnGoldAmountChanged(int prevAmount, int currentAmount)
-    {
-      UpdateTextColor(CostType.Gold, currentAmount);
-    }
-
-    void OnSoulAmountChanged(int prevAmount, int currentAmount)
-    {
-      UpdateTextColor(CostType.Soul, currentAmount);
-    }
-
-    void OnClick()
+    protected override void OnClick()
     {
       PlayerController.Instance.TryEnhanceSkillAttributeLevelByUI(_attributeToEnhance);
     }
 
-    void Awake()
+    protected override void Awake()
     {
-      _button.onClick.AddListener(OnClick);
+      base.Awake();
 
       _skillModule.SkillAttributeLevelInitialized += OnSkillAttributeLevelInitialized;
       _skillModule.SkillAttributeLevelChanged += OnSkillAttributeLevelChanged;
-
-      _resourceModule.GoldAmountChanged += OnGoldAmountChanged;
-      _resourceModule.SoulAmountChanged += OnSoulAmountChanged;
     }
 
-    void OnDestroy()
+    protected override void OnDestroy()
     {
-      _button.onClick.RemoveAllListeners();
+      base.OnDestroy();
 
       _skillModule.SkillAttributeLevelInitialized -= OnSkillAttributeLevelInitialized;
       _skillModule.SkillAttributeLevelChanged -= OnSkillAttributeLevelChanged;
-
-      _resourceModule.GoldAmountChanged -= OnGoldAmountChanged;
-      _resourceModule.SoulAmountChanged -= OnSoulAmountChanged;
     }
   }
 }

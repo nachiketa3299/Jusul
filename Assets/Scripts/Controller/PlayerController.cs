@@ -93,6 +93,11 @@ namespace Jusul
       return TryEnhanceSkillAttributeLevel(attribute);
     }
 
+    public bool TryEnhanceSkillPurchaseLevelByUI()
+    {
+      return TryEnhanceSkillPurchaseLevel();
+    }
+
     // 싱글턴으로 만들어주는 작업
     protected override void Awake()
     {

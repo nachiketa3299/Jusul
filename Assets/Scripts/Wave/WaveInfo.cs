@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
+
 using UnityEngine;
+
 
 namespace Jusul
 {
-  [Serializable]
-  public class Reward
-  {
-    public int Gold;
-    public int Soul;
-  }
-
+  // TODO: WaveInfo 보다 더 나은 이름이 존재하는지 확인할 것
   [CreateAssetMenu(fileName="Wave_00", menuName ="Jusul/Wave/Wave")]
   public class WaveInfo : ScriptableObject
   {
@@ -22,7 +18,7 @@ namespace Jusul
     }
 
     public int Duration;
-    public Reward Reward;
+    public RewardEntry Reward;
     public bool IsBossWave = false;
 
     public List<WaveEntry> Entries;

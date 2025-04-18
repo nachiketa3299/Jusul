@@ -46,17 +46,9 @@ namespace Jusul
       _character.transform.SetPositionAndRotation(_characterPivot.position, Quaternion.identity);
     }
 
-    public void AddRewardToPlayer(Reward reward)
+    public void AddRewardToPlayer(RewardEntry reward)
     {
-      if (reward.Gold > 0)
-      {
-        _controller.AddGold(reward.Gold);
-      }
-
-      if (reward.Soul > 0)
-      {
-        _controller.AddSoul(reward.Soul);
-      }
+      _controller.AddReward(reward);
     }
 
     public void SetPlayer(JusulCharacterControllerBase controller)

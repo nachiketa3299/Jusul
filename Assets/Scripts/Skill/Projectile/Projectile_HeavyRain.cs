@@ -32,8 +32,7 @@ namespace Jusul
 
       if (collision.TryGetComponent<Enemy>(out var enemy))
       {
-        DamageIndicationManager.Instance.IndicateDamage(_skillBase, enemy);
-        enemy.ApplyDamage(_finalDamage);
+        enemy.ApplyDamage(_skillBase, _finalDamage);
         --_count;
 
         if (_count == 0)

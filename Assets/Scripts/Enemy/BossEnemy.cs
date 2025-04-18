@@ -15,10 +15,11 @@ namespace Jusul
       _healthBar.gameObject.SetActive(true);
     }
 
-    public override void ApplyDamage(int damage)
+    public override void ApplyDamage(SkillBase skill, int finalDamage)
     {
-      _currentHealth -= damage;
-      _healthBar.value = Mathf.Clamp01((float)_currentHealth/_maxHealth);
+      _currentHealth -= finalDamage;
+
+      _healthBar.value = Mathf.Clamp01((float)_currentHealth / _maxHealth);
 
       if (_currentHealth <= 0)
       {

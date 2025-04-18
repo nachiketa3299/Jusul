@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 using UnityEngine;
@@ -5,33 +6,28 @@ using UnityEngine.UI;
 
 namespace Jusul
 {
-  public enum StatusEffect
-  {
-    None, 
-    Burn
-  }
-
   [DisallowMultipleComponent]
   public class Enemy : MonoBehaviour
   {
-    [Header("UI Settings")][Space]
+    // TODO: HealthBar 별도의 컴포넌트로 떼기
+    // TODO: Enemy는 UI 요소를 알지 못해도 되도록 하기
+    [Header("UI 연결")][Space]
     [SerializeField] protected Slider _healthBar;
 
-    [Header("Stats")][Space]
+    [Header("스탯")][Space]
     [SerializeField] float _speed;
     [SerializeField] float _range;
     [SerializeField] int _damage;
     [SerializeField] float _attackCooldown;
     [SerializeField] protected int _maxHealth;
 
-    [Header("Reward")][Space]
-    [SerializeField] protected Reward _reward;
+    [Header("보상")][Space]
+    [SerializeField] protected RewardEntry _reward;
 
     protected int _laneIndex;
 
-    StatusEffect _statusEffect = StatusEffect.None;
-    
-    public StatusEffect StatusEffect => _statusEffect;
+    public event Action<Enemy, SkillBase, int> EnemyDamagedBySkill;
+
     public int LaneIndex => _laneIndex;
     public void SetLaneIndex(int laneIndex) => _laneIndex = laneIndex;
 
@@ -41,6 +37,11 @@ namespace Jusul
     bool _hasAttacked = false;
 
     Transform _stopPivot;
+
+    void OnEnemyDamagedBySkill(Enemy enemy, SkillBase skill, int finalDamage)
+    {
+      DamageIndicationManager.Instance.IndicateDamage(this, skill, finalDamage);
+    }
 
     public virtual void Initialize(int laneIndex)
     {
@@ -52,6 +53,8 @@ namespace Jusul
       _healthBar.gameObject.SetActive(false);
 
       _stopPivot = LaneManager.Instance.GetLaneAt(_laneIndex).EnemyStopPivot;
+
+      EnemyDamagedBySkill += OnEnemyDamagedBySkill;
     }
 
     public virtual void StartAdvanceRoutine()
@@ -59,22 +62,27 @@ namespace Jusul
       StartCoroutine(AdvanceRoutine());
     }
 
-    public virtual void ApplyDamage(int damage)
+    public virtual void ApplyDamage(SkillBase skill, int finalDamage)
     {
-      if (!_hasAttacked)
-      {
-        _hasAttacked = true;
-        _healthBar.gameObject.SetActive(true);
-      }
+      _currentHealth -= finalDamage;
+      _healthBar.value = Mathf.Clamp01((float)_currentHealth / _maxHealth);
 
-      _currentHealth -= damage;
-      _healthBar.value = Mathf.Clamp01((float)_currentHealth/_maxHealth);
+      // 여기서 UI 등의 업데이트
+      EnemyDamagedBySkill?.Invoke(this, skill, finalDamage);
 
+      // 체력이 다 해서 죽은 것은, 무조건 플레이어에 의한 죽음임
       if (_currentHealth <= 0)
       {
         _deathByCharacter = true;
         Destroy(gameObject);
         return;
+      }
+
+      // 한번 맞아야 체력 게이지를 표시함
+      if (!_hasAttacked)
+      {
+        _hasAttacked = true;
+        _healthBar.gameObject.SetActive(true);
       }
     }
 
@@ -122,10 +130,8 @@ namespace Jusul
         // 해당 레인 플레이어의 골드 증가
         LaneManager.Instance.AddRewardToPlayerAtLane(_laneIndex, _reward);
       }
-    }
 
-    public void SetStatusEffect(StatusEffect statusEffect)
-    {
+      EnemyDamagedBySkill -= OnEnemyDamagedBySkill;
     }
   }
 }

@@ -15,7 +15,7 @@ namespace Jusul
     [SerializeField] TMP_Text _timerText;
 
     public int MaxHealth => _maxHealth;
-    public Reward Reward => _reward;
+    public RewardEntry Reward => _reward;
     public Sprite Sprite => _spriteRenderer.sprite;
 
     public override void Initialize(int laneIndex)
@@ -25,10 +25,12 @@ namespace Jusul
       _healthBar.gameObject.SetActive(true);
     }
 
-    public override void ApplyDamage(int damage)
+    // TODO: ApplyDamage가 작동하는 방식 바꾸기
+    // UI 활성화를 분리하면, 굳이 상속 받지 않아도 됨
+    public override void ApplyDamage(SkillBase skill, int finalDamage)
     {
-      _currentHealth -= damage;
-      _healthBar.value = Mathf.Clamp01((float)_currentHealth/_maxHealth);
+      _currentHealth -= finalDamage;
+      _healthBar.value = Mathf.Clamp01((float)_currentHealth / _maxHealth);
 
       if (_currentHealth <= 0)
       {

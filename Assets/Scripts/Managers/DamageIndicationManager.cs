@@ -5,23 +5,22 @@ namespace Jusul
   [DisallowMultipleComponent]
   public class DamageIndicationManager : MonoBehaviour
   {
-    [Header("Prefab")][Space]
-
+    [Header("데이미 인디케이터 프리팹")][Space]
     [SerializeField] DamageIndicator _damageIndicatorPrefab;
 
     static DamageIndicationManager _instance;
     public static DamageIndicationManager Instance => _instance;
 
+    public void IndicateDamage(Enemy enemy, SkillBase skill, int finalDamage)
+    {
+      DamageIndicator indicator = Instantiate(_damageIndicatorPrefab, transform);
+      indicator.Initialize(enemy, skill, finalDamage);
+      indicator.Activate();
+    }
+
     void Awake()
     {
       _instance = this;
-    }
-
-    public void IndicateDamage(SkillBase skill, Enemy enemy)
-    {
-      DamageIndicator indicator = Instantiate(_damageIndicatorPrefab, transform);
-      indicator.Initialize(skill, enemy);
-      indicator.Activate();
     }
   }
 }

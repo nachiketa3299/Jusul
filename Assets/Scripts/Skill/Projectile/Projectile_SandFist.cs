@@ -28,8 +28,7 @@ namespace Jusul
       {
         if (enemy.LaneIndex == _laneIndex)
         {
-          DamageIndicationManager.Instance.IndicateDamage(_skillBase, enemy);
-          enemy.ApplyDamage(_finalDamage);
+          enemy.ApplyDamage(_skillBase, _finalDamage);
         }
       }
     }

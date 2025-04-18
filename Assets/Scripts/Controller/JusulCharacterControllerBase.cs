@@ -39,14 +39,9 @@ namespace Jusul
       LaneManager.Instance.SetCharacterAtLane(_laneIndex, _controllingCharacter);
     }
 
-    public void AddGold(int goldAmount)
+    public void AddReward(RewardEntry reward)
     {
-      _resourceModule.AddGoldAmount(goldAmount);
-    }
-
-    public void AddSoul(int soulAmount)
-    {
-      _resourceModule.AddSoulAmount(soulAmount);
+      _resourceModule.AddReward(reward);
     }
 
     protected bool TrySpawnBounty(BountyEnemy bountyEnemy)
@@ -142,8 +137,36 @@ namespace Jusul
           // 비용을 지불함
           _resourceModule.AddCostAmount(costType, -cost);
 
-          // 스킬 레벨 업
+          // 스킬 속성 레벨 업
           _skillModule.SetSkillAttributeLevel(attribute, targetLevel);
+
+          return true;
+        }
+
+        return false;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    protected bool TryEnhanceSkillPurchaseLevel()
+    {
+      int currentLevel = _skillModule.GetSkillPurchaseLevel();
+      int targetLevel = currentLevel + 1;
+
+      // 강화 비용 테이블에 비용이 있음
+      if (_enhanceModule.TryGetNextPurchaseEnhanceCost(targetLevel, out CostType costType, out int cost))
+      {
+        // 비용을 낼 수 있음
+        if (_resourceModule.CanAffordCost(costType, cost))
+        {
+          // 비용을 지불함
+          _resourceModule.AddCostAmount(costType, -cost);
+
+          // 스킬 구매 레벨 업
+          _skillModule.SetSkillPurchaseLevel(targetLevel);
 
           return true;
         }

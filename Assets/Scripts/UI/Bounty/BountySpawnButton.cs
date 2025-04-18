@@ -37,17 +37,17 @@ namespace Jusul
 
       _healthText.text = $"♥ {_enemyPrefab.MaxHealth}";
 
-      if (_enemyPrefab.Reward.Gold > 0)
+      if (_enemyPrefab.Reward.GoldAmount > 0)
       {
         _rewardBackground.color = _colorOnGoldReward;
         _rewardIcon.sprite = _iconOnGold;
-        _rewardText.text = _enemyPrefab.Reward.Gold.ToString();
+        _rewardText.text = _enemyPrefab.Reward.GoldAmount.ToString();
       }
-      else if (_enemyPrefab.Reward.Soul > 0)
+      else if (_enemyPrefab.Reward.SoulAmount > 0)
       {
         _rewardBackground.color = _colorOnSoulReward;
         _rewardIcon.sprite = _iconOnSoul;
-        _rewardText.text = _enemyPrefab.Reward.Soul.ToString();
+        _rewardText.text = _enemyPrefab.Reward.SoulAmount.ToString();
       }
 
       _icon.sprite = _enemyPrefab.Sprite;

@@ -25,7 +25,7 @@ namespace Jusul
     [SerializeField] SkillEnhanceRateTable _skillEnhanceRateTable;
 
     [Header("스킬 뽑기 정보")][Space]
-    [SerializeField] SkillRarityProbability _skillRarityProbability;
+    [SerializeField] SkillRarityTable _skillRarityProbability;
 
     [Header("구매 가격")][Space]
     [SerializeField] int _initialSkillPurchasePrice = 20;
@@ -40,9 +40,11 @@ namespace Jusul
     public event Action<SkillAttribute, int> SkillAttributeLevelInitialized;
     public event Action<SkillAttribute, int, int> SkillAttributeLevelChanged;
 
+    public event Action<int> SkillPurchaseLevelInitialized;
+    public event Action<int, int> SkillPurchaseLevelChanged;
+
     public int SkillPurchasePrice => _currentSkillPurchasePrice;
 
-    int _skillRarityProbabilityLevel = 0;
     CharacterModel _character;
     int _laneIndex;
     int _totalSkillCount;
@@ -52,6 +54,8 @@ namespace Jusul
     int _fireSkillLevel;
     int _waterSkillLevel;
 
+    int _skillPurchaseLevel;
+
     Dictionary<SkillBase, RuntimeSkillData> _skillInfos = new();
 
     public void InitializeOnStart(int laneIndex, CharacterModel character)
@@ -60,7 +64,11 @@ namespace Jusul
       _character = character;
       _totalSkillCount = 0;
 
+      // 현재 스킬 구매 가격을 초기 가격으로 설정
       _currentSkillPurchasePrice = _initialSkillPurchasePrice;
+
+      // 스킬 구매 레벨을 1으로 설정
+      _skillPurchaseLevel = 1;
 
       // 속성별 스킬 레벨을 모두 1로 초기화
       _rockSKillLevel = _waterSkillLevel = _fireSkillLevel = 1;
@@ -70,14 +78,17 @@ namespace Jusul
         _skillInfos.Add(skill, new RuntimeSkillData());
       }
 
+      // 각종 초기화 완료 이벤트 발생
       SkillInfoInitialized?.Invoke(_skillInfos);
       SkillPurchasePriceInitialized?.Invoke(_currentSkillPurchasePrice);
 
       TotalSkillCountInitialized?.Invoke(_totalSkillCount, _maxSkillCount);
 
-      SkillAttributeLevelInitialized?.Invoke(SkillAttribute.Rock, 1);
-      SkillAttributeLevelInitialized?.Invoke(SkillAttribute.Fire, 1);
-      SkillAttributeLevelInitialized?.Invoke(SkillAttribute.Water, 1);
+      SkillAttributeLevelInitialized?.Invoke(SkillAttribute.Rock, _rockSKillLevel);
+      SkillAttributeLevelInitialized?.Invoke(SkillAttribute.Fire, _fireSkillLevel);
+      SkillAttributeLevelInitialized?.Invoke(SkillAttribute.Water, _waterSkillLevel);
+
+      SkillPurchaseLevelInitialized?.Invoke(_skillPurchaseLevel);
     }
 
     public int GetSkillCount(SkillBase skill) 
@@ -94,6 +105,11 @@ namespace Jusul
         SkillAttribute.Water => _waterSkillLevel,
         _ => 0
       };
+    }
+
+    public int GetSkillPurchaseLevel()
+    {
+      return _skillPurchaseLevel;
     }
 
     public void SetSkillAttributeLevel(SkillAttribute attribute, int newLevel)
@@ -122,6 +138,14 @@ namespace Jusul
           break;
         }
       }
+    }
+
+    public void SetSkillPurchaseLevel(int newLevel)
+    {
+      int prevLevel = _skillPurchaseLevel;
+      _skillPurchaseLevel = newLevel;
+
+      SkillPurchaseLevelChanged?.Invoke(prevLevel, newLevel);
     }
 
     /// <summary>
@@ -186,7 +210,7 @@ namespace Jusul
       }
 
       // 현재 픽 레벨에 맞는 등급 뽑기
-      SkillRarity rarity = _skillRarityProbability.PickWithLevel(_skillRarityProbabilityLevel);
+      SkillRarity rarity = _skillRarityProbability.PickWithLevel(_skillPurchaseLevel);
       // Rock, Water, Fire 중 하나를 랜덤으로 뽑기
       SkillAttribute attribute = (SkillAttribute)Random.Range(0, 3);
       // 최종적으로 뽑은 스킬

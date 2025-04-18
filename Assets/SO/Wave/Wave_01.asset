@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Duration: 12
   Reward:
-    Gold: 60
-    Soul: 1
+    GoldAmount: 200
+    SoulAmount: 1
   IsBossWave: 0
   Entries:
   - EnemyPrefab: {fileID: 4649306801921421695, guid: adbbb11f24ca72b4e9fcf015be11ba6e, type: 3}
