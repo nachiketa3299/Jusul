@@ -87,6 +87,14 @@ PrefabInstance:
       propertyPath: _attackCooldown
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 68751176613327487, guid: 08aef64c610c49f4d9dbb7ad07f545ab, type: 3}
+      propertyPath: _reward.GoldAmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 68751176613327487, guid: 08aef64c610c49f4d9dbb7ad07f545ab, type: 3}
+      propertyPath: _reward.SoulAmount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4694387155837472322, guid: 08aef64c610c49f4d9dbb7ad07f545ab, type: 3}
       propertyPath: m_Size.x
       value: 0.45703125

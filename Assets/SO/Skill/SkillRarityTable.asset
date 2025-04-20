@@ -15,16 +15,40 @@ MonoBehaviour:
   Probabilities:
   - Entries:
     - Rarity: 0
-      Weight: 0.8
+      Weight: 0.69
     - Rarity: 1
-      Weight: 0.2
-  - Entries:
-    - Rarity: 0
-      Weight: 0.7
-    - Rarity: 1
-      Weight: 0.3
+      Weight: 0.21
+    - Rarity: 2
+      Weight: 0.05
+    - Rarity: 3
+      Weight: 0.025
+    - Rarity: 4
+      Weight: 0.0125
+    - Rarity: 5
+      Weight: 0.0125
   - Entries:
     - Rarity: 0
       Weight: 0.6
     - Rarity: 1
-      Weight: 0.4
+      Weight: 0.3
+    - Rarity: 2
+      Weight: 0.05
+    - Rarity: 3
+      Weight: 0.025
+    - Rarity: 4
+      Weight: 0.0125
+    - Rarity: 5
+      Weight: 0.0125
+  - Entries:
+    - Rarity: 0
+      Weight: 0.6
+    - Rarity: 1
+      Weight: 0.3
+    - Rarity: 2
+      Weight: 0.05
+    - Rarity: 3
+      Weight: 0.025
+    - Rarity: 4
+      Weight: 0.0125
+    - Rarity: 5
+      Weight: 0.0125

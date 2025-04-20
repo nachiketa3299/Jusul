@@ -89,6 +89,8 @@ namespace Jusul
       SkillAttributeLevelInitialized?.Invoke(SkillAttribute.Water, _waterSkillLevel);
 
       SkillPurchaseLevelInitialized?.Invoke(_skillPurchaseLevel);
+
+      Debug.Log("Initialization Called");
     }
 
     public int GetSkillCount(SkillBase skill) 

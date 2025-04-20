@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -22,10 +23,17 @@ namespace Jusul
     [Header("AI 컨트롤러 프리팹")][Space]
     [SerializeField] AIController _aiControllerPrefab;
 
-    [Header("플레이어 컨트롤러 씬 레퍼런스")][Space]
+    [Header("플레이어 씬 레퍼런스")][Space]
     [SerializeField] PlayerController _playerController;
+    [SerializeField] MainUIInitializationHandler _mainUI;
 
     List<JusulCharacterControllerBase> _controllerLaneOrder = new(4);
+
+    void Awake()
+    {
+      // 이벤트 구독 등 먼저 일어나야 하는 것들 
+      _mainUI.InitializationOnAwake();
+    }
 
     void Start()
     {

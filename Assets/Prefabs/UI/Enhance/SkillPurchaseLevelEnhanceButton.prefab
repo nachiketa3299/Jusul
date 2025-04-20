@@ -840,11 +840,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enhanceModule: {fileID: 0}
   _resourceModule: {fileID: 0}
-  _costIcons: {fileID: 11400000, guid: 7437b8efa37fdfc4a9f83cf98b7384a1, type: 2}
+  _costResources: {fileID: 11400000, guid: 7437b8efa37fdfc4a9f83cf98b7384a1, type: 2}
   _button: {fileID: 2268076476453155349}
   _currentLevelText: {fileID: 4363969234778174006}
   _costIcon: {fileID: 3684822011002385038}
   _nextLevelCostText: {fileID: 6383904391774828128}
+  _skillModule: {fileID: 0}
 --- !u!1 &5882829138627786187
 GameObject:
   m_ObjectHideFlags: 0

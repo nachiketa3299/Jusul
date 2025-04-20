@@ -27,7 +27,7 @@ namespace Jusul
       public List<RarityEntry> Entries;
     }
 
-    [Header("뽑기 레벨 n - 1 에서의 확률(반드시 희귀도 순으로 정렬)")][Space]
+    [Header("인덱스 i는, 뽑기 레벨이 n일 때, i = n - 1 (반드시 희귀도 순으로 정렬)")][Space]
     public List<ProbabilityEntry> Probabilities;
 
     /// <summary>
@@ -51,7 +51,6 @@ namespace Jusul
         }
       }
 
-      Debug.Log("확률을 발견하지 못했습니다.");
       return probability.Entries.Last().Rarity;
     }
 

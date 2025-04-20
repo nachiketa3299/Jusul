@@ -9,7 +9,7 @@ namespace Jusul
   public class PlayerController : JusulCharacterControllerBase
   {
     [Header("UI 연결")][Space]
-    [SerializeField] SkillUpgradeTable _skillUpgradeTable;
+    [SerializeField] SkillUpgradeTableGrids _skillUpgradeGrids;
 
     static PlayerController _instance;
     public static PlayerController Instance => _instance;
@@ -18,14 +18,14 @@ namespace Jusul
     {
       if (TryPurchaseSkill(out SkillBase purchasedSkill))
       {
-        SkillUpgradeButton purchasedButton = _skillUpgradeTable.GetButtonBySkill(purchasedSkill);
+        SkillUpgradeButton purchasedButton = _skillUpgradeGrids.GetButtonBySkill(purchasedSkill);
 
         // 빔 이펙트 지연 업데이트
         BeamEffectManager.Instance.StartBeamEffect
         (
           purchaseButton.transform.position, 
           purchasedButton.transform.position, 
-          () => { _skillUpgradeTable.UpdateSkillCount(purchasedSkill); }
+          () => { _skillUpgradeGrids.UpdateSkillCount(purchasedSkill); }
         );
 
         return true;
@@ -40,17 +40,17 @@ namespace Jusul
     {
       if (TryUpgradeSkill(in skillToUpgrade, out SkillBase upgradedSkill))
       {
-        SkillUpgradeButton upgradedButton = _skillUpgradeTable.GetButtonBySkill(upgradedSkill);
+        SkillUpgradeButton upgradedButton = _skillUpgradeGrids.GetButtonBySkill(upgradedSkill);
 
         // 업그레이드 이전 스킬 UI 업데이트를 강제로 발생시킴
-        _skillUpgradeTable.UpdateSkillCount(skillToUpgrade);
+        _skillUpgradeGrids.UpdateSkillCount(skillToUpgrade);
 
         // 빔 이펙트 지연 업데이트
         BeamEffectManager.Instance.StartBeamEffect
         (
           upgradeButton.transform.position, 
           upgradedButton.transform.position, 
-          () => { _skillUpgradeTable.UpdateSkillCount(upgradedSkill); }
+          () => { _skillUpgradeGrids.UpdateSkillCount(upgradedSkill); }
         );
 
         return true;
@@ -65,14 +65,14 @@ namespace Jusul
     {
       if (TryMineSkill(in rarity, in soulCost, out SkillBase minedSkill))
       {
-        SkillUpgradeButton minedButton = _skillUpgradeTable.GetButtonBySkill(minedSkill);
+        SkillUpgradeButton minedButton = _skillUpgradeGrids.GetButtonBySkill(minedSkill);
 
         // 빔 이펙트 지연 업데이트
         BeamEffectManager.Instance.StartBeamEffect
         (
           mineButton.transform.position,
           minedButton.transform.position,
-          () => { _skillUpgradeTable.UpdateSkillCount(minedSkill); }
+          () => { _skillUpgradeGrids.UpdateSkillCount(minedSkill); }
         );
 
         return true;

@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: _attackCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5994596380719624597, guid: 58f361b8660cd91498d4f5b873806baa, type: 3}
+      propertyPath: _reward.GoldAmount
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3481632624313292068, guid: 58f361b8660cd91498d4f5b873806baa, type: 3}
       propertyPath: m_Name
       value: Enemy_Worm

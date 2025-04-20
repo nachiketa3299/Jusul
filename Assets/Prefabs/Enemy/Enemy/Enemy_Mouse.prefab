@@ -158,6 +158,10 @@ PrefabInstance:
       propertyPath: _attackCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5994596380719624597, guid: 58f361b8660cd91498d4f5b873806baa, type: 3}
+      propertyPath: _reward.GoldAmount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1796325195685161376, guid: 58f361b8660cd91498d4f5b873806baa, type: 3}
       propertyPath: m_SortingLayerID
       value: -760497005

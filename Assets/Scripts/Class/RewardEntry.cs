@@ -7,5 +7,8 @@ namespace Jusul
   {
     public int GoldAmount;
     public int SoulAmount;
+
+    public bool HasGoldReward => GoldAmount > 0;
+    public bool HasSoulReward => SoulAmount > 0;
   }
 }

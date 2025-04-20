@@ -157,7 +157,7 @@ namespace Jusul
       int targetLevel = currentLevel + 1;
 
       // 강화 비용 테이블에 비용이 있음
-      if (_enhanceModule.TryGetNextPurchaseEnhanceCost(targetLevel, out CostType costType, out int cost))
+      if (_enhanceModule.TryGetNextSkillPurchaseEnhanceCost(targetLevel, out CostType costType, out int cost))
       {
         // 비용을 낼 수 있음
         if (_resourceModule.CanAffordCost(costType, cost))

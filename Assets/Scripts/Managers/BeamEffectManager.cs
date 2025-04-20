@@ -11,9 +11,6 @@ namespace Jusul
   [DisallowMultipleComponent]
   public class BeamEffectManager : MonoBehaviour
   {
-    [Header("UI 연결")]
-    [SerializeField] SkillUpgradeTable _skillUpgradeTable;
-
     [Header("생성할 빔 프리팹")][Space]
     [SerializeField] BeamEffect _beamPrefab;
 
