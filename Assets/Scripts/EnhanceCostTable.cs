@@ -89,7 +89,7 @@ namespace Jusul
       levelEntry = null;
 
       // 예) Level n에 도달하기 위한 비용은 n - 2 번 인덱스에 저장되어 있음.
-      int listIndex = nextLevel - 2;
+      int listIndex = nextLevel - 1;
 
       if (listIndex < CostAtLevel.Count)
       {

@@ -31,6 +31,7 @@ namespace Jusul
 
         _costIcon.sprite = _costResources.GetIconByCostType(_costType);
         _nextLevelCostText.text = nextLevelCost.ToString();
+
       }
     }
 
@@ -40,6 +41,11 @@ namespace Jusul
 
       _nextLevelCostText.text = "MAX";
       _currentLevelText.text = maxLevel.ToString();
+
+      _resourceModule.GoldAmountChanged -= OnGoldAmountChanged;
+      _resourceModule.SoulAmountChanged -= OnSoulAmountChanged;
+
+      _nextLevelCostText.color = Color.white;
     }
 
     protected override void OnClick()
