@@ -17,6 +17,12 @@ namespace Jusul
     [SerializeField] TMP_Text _fireText;
     [SerializeField] TMP_Text _waterText;
 
+    public void InitializeOnAwake()
+    {
+      _skillModule.SkillAttributeLevelInitialized += OnSkillAttributeLevelInitialized;
+      _skillModule.SkillAttributeLevelChanged += OnSkillAttributeLevelChanged;
+    }
+
     void OnSkillAttributeLevelInitialized(SkillAttribute attribute, int initLevel)
     {
       switch (attribute)
@@ -49,16 +55,10 @@ namespace Jusul
       }
     }
 
-    void Awake()
-    {
-      _skillModule.SkillAttributeLevelInitialized += OnSkillAttributeLevelInitialized;
-      _skillModule.SkillAttributeLevelChanged += OnSkillAttributeLevelChanged;
-    }
     void OnDestroy()
     {
       _skillModule.SkillAttributeLevelInitialized -= OnSkillAttributeLevelInitialized;
       _skillModule.SkillAttributeLevelChanged -= OnSkillAttributeLevelChanged;
     }
-
   }
 }

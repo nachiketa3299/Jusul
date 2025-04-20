@@ -13,6 +13,12 @@ namespace Jusul
   [DisallowMultipleComponent]
   public class GameBootstrapManager : MonoBehaviour
   {
+    [Header("싱글턴")][Space]
+    [SerializeField] WaveManager _waveManager;
+    [SerializeField] LaneManager _laneManager;
+    [SerializeField] BeamEffectManager _beamEffectManager;
+    [SerializeField] DamageIndicationManager _damageIndicationManager;
+
     [Header("캐릭터 프리팹")][Space]
     [SerializeField] CharacterModel _characterModelPrefab;
 
@@ -31,6 +37,12 @@ namespace Jusul
 
     void Awake()
     {
+      // 싱글턴 초기화
+      _waveManager.InitializeSingleton();
+      _laneManager.InitializeSingleton();
+      _beamEffectManager.InitializeSingleton();
+      _damageIndicationManager.InitializeSingleton();
+
       // 이벤트 구독 등 먼저 일어나야 하는 것들 
       _mainUI.InitializationOnAwake();
     }

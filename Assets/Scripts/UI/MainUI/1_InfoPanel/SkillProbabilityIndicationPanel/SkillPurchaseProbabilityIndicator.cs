@@ -37,6 +37,12 @@ namespace Jusul
 
     [HideInInspector][SerializeField] int _skillPurchaseLevel = 1;
 
+    public void InitializationOnAwake()
+    {
+      _skillModule.SkillPurchaseLevelInitialized += OnSkillPurchaseLevelInitialized;
+      _skillModule.SkillPurchaseLevelChanged += OnSkillPurchaseLevelChanged;
+    }
+
     void OnSkillPurchaseLevelInitialized(int initLevel)
     {
       _skillPurchaseLevel = initLevel;
@@ -70,12 +76,6 @@ namespace Jusul
       _titleOnLegend.color = _skillRarityColorTable.GetColorBySkillRarity(SkillRarity.Legend);
       _titleOnAncestor.color = _skillRarityColorTable.GetColorBySkillRarity(SkillRarity.Ancestor);
       _titleOnScourge.color = _skillRarityColorTable.GetColorBySkillRarity(SkillRarity.Scourge);
-    }
-
-    void Awake()
-    {
-      _skillModule.SkillPurchaseLevelInitialized += OnSkillPurchaseLevelInitialized;
-      _skillModule.SkillPurchaseLevelChanged += OnSkillPurchaseLevelChanged;
     }
 
     void OnDestroy()

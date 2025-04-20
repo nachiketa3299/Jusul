@@ -59,6 +59,11 @@ namespace Jusul
         return false;
       }
 
+      if (!_skillModule.CanAddNewSkill)
+      {
+        return false;
+      }
+
       // 구매
       _resourceModule.AddGoldAmount(-_skillModule.SkillPurchasePrice);
       _skillModule.IncreaseSkillPurchasePrice();
@@ -76,6 +81,7 @@ namespace Jusul
       _skillModule.AddSkill(pickedSkill, 1);
 
       purchasedSkill = pickedSkill;
+
       return true;
     }
 
@@ -114,9 +120,20 @@ namespace Jusul
         return false;
       }
 
+      if (!_skillModule.CanAddNewSkill)
+      {
+        return false;
+      }
+
       _resourceModule.AddSoulAmount(-soulCost);
 
       SkillBase pickedSkill = _skillModule.TryMineSkill(rarity);
+
+      if (pickedSkill == null)
+      {
+        return false;
+      }
+
       _skillModule.AddSkill(pickedSkill, 1);
 
       minedSkill = pickedSkill;

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Jusul
 {
   [DisallowMultipleComponent]
-  public class DamageIndicationManager : MonoBehaviour
+  public class DamageIndicationManager : MonoBehaviour, ISingleton
   {
     [Header("데이미 인디케이터 프리팹")][Space]
     [SerializeField] DamageIndicator _damageIndicatorPrefab;
@@ -18,7 +18,7 @@ namespace Jusul
       indicator.Activate();
     }
 
-    void Awake()
+    public void InitializeSingleton()
     {
       _instance = this;
     }

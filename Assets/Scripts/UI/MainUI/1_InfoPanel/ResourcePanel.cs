@@ -16,6 +16,15 @@ namespace Jusul
     [SerializeField] TMP_Text _totalSoul;
     [SerializeField] TMP_Text _totalSkillCount;
 
+    public void InitializationOnAwake()
+    {
+      _skillModule.TotalSkillCountInitialized += OnTotalSkillCountInitialized;
+      _skillModule.TotalSkillCountChanged += OnTotalSkillCountChanged;
+
+      _resourceModule.GoldAmountChanged += OnGoldAmountChanged;
+      _resourceModule.SoulAmountChanged += OnSoulAmountChanged;
+    }
+
     void OnGoldAmountChanged(int prev, int current)
     {
       _totalGold.text = current.ToString();
@@ -34,15 +43,6 @@ namespace Jusul
     void OnTotalSkillCountChanged(int totalSkillCount, int maxSkillCount)
     {
       _totalSkillCount.text = $"{totalSkillCount}/{maxSkillCount}";
-    }
-
-    void Awake()
-    {
-      _skillModule.TotalSkillCountInitialized += OnTotalSkillCountInitialized;
-      _skillModule.TotalSkillCountChanged += OnTotalSkillCountChanged;
-
-      _resourceModule.GoldAmountChanged += OnGoldAmountChanged;
-      _resourceModule.SoulAmountChanged += OnSoulAmountChanged;
     }
 
     void OnDestroy()

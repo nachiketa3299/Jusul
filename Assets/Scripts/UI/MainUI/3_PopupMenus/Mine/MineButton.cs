@@ -7,28 +7,32 @@ namespace Jusul
 {
   public class MineButton : ButtonBase
   {
-    [SerializeField] SkillRarity _rarityToMine = SkillRarity.Hero; 
+    [Header("플레이어 연결")][Space]
+    [SerializeField] ResourceModule _resourceModule;
+
+    [Header("하위 UI 요소 연결")][Space]
     [SerializeField] Button _button;
-    [SerializeField] int _soulCost = 5;
     [SerializeField] TMP_Text _costText;
 
-    void Start()
+    [Header("비용과 채굴 등급")][Space]
+    [SerializeField] SkillRarity _rarityToMine = SkillRarity.Hero; 
+    [SerializeField] int _soulCost = 5;
+
+    public void InitializationOnAwake()
     {
-      _button.onClick.AddListener(MineButton_ButtonClicked);
+      _button.onClick.AddListener(OnClick);
       _costText.text = _soulCost.ToString();
 
-      // PlayerController.Instance.SoulAmountChanged += MineButton_SoulAmountChanged;
-
-      // 초기화 시점땜에 어쩔수없음
-      // MineButton_SoulAmountChanged(PlayerController.Instance.SoulAmount);
+      _resourceModule.SoulAmountInitialized += OnSoulAmountInitialized;
+      _resourceModule.SoulAmountChanged += OnSoulAmountChanged;
     }
 
-    void MineButton_ButtonClicked()
+    void OnClick()
     {
       PlayerController.Instance.TryMineSkillByUI(this, _rarityToMine, _soulCost);
     }
 
-    void MineButton_SoulAmountChanged(int amount)
+    void OnSoulAmountInitialized(int amount)
     {
       if (amount < _soulCost)
       {
@@ -39,6 +43,23 @@ namespace Jusul
         _costText.color = Color.white;
       }
     }
-  }
 
+    void OnSoulAmountChanged(int prev, int amount)
+    {
+      if (amount < _soulCost)
+      {
+        _costText.color = Color.red;
+      }
+      else
+      {
+        _costText.color = Color.white;
+      }
+    }
+
+    void OnDestroy()
+    {
+      _resourceModule.SoulAmountInitialized -= OnSoulAmountInitialized;
+      _resourceModule.SoulAmountChanged -= OnSoulAmountChanged;
+    }
+  }
 }

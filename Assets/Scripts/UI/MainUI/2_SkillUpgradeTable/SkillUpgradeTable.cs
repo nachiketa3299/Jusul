@@ -11,14 +11,17 @@ namespace Jusul
   [DisallowMultipleComponent]
   public class SkillUpgradeTable : MonoBehaviour
   {
-    [Header("하위 UI 요소 연결")][Space]
+    [Header("외부 UI 요소 연결")][Space]
     [SerializeField] SkillTooltipPanel _tooltipPanel;
+
+    [Header("하위 UI 요소 연결")][Space]
     [SerializeField] SkillUpgradeTableGrids _skillUpgradeTableGrids;
+    [SerializeField] SkillAttributeLevelIndicator _skillAttributeLevelIndicator;
 
     public void InitializationOnAwake()
     {
       _skillUpgradeTableGrids.InitializationOnAwake();
-      _tooltipPanel.InitializationOnAwake();
+      _skillAttributeLevelIndicator.InitializeOnAwake();
     }
 
     public SkillUpgradeButton GetButtonBySkill(SkillBase skill)

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Jusul
 {
   [DisallowMultipleComponent]
-  public class WaveManager : MonoBehaviour 
+  public class WaveManager : MonoBehaviour, ISingleton
   {
     [Header("Wave Table")][Space]
     [SerializeField] WaveInfoTable _waveTable;
@@ -15,7 +15,7 @@ namespace Jusul
     [SerializeField] float _initialWaitTime = 2.0f;
     [SerializeField] float _timeGapBetweenWaves = 3.0f;
 
-    [Header("UI Settings")][Space]
+    [Header("UI 요소")][Space]
     [SerializeField] WaveFlag _waveFlag;
 
     [Header("Spawn Settings")][Space]
@@ -25,12 +25,13 @@ namespace Jusul
 
     public static WaveManager Instance => _instance;
 
+
     public Action<int, WaveInfo> WaveStarted;
     public Action<int, float, float> WaveTimerStarted;
     public Action<int, float, float> WaveTimerPassed;
     public Action<int, float, float> WaveTimerEnded;
 
-    void Awake()
+    public void InitializeSingleton()
     {
       _instance = this;
     }

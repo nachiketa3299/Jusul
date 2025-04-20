@@ -12,7 +12,9 @@ namespace Jusul
 
     public void InitializationOnAwake()
     {
-
+      _waveTimer.InitializationOnAwake();
+      _resourcePanel.InitializationOnAwake();
+      _skillPurchaseProbabilityIndicator.InitializationOnAwake();
     }
   }
 }

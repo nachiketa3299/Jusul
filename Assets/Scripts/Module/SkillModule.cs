@@ -58,6 +58,8 @@ namespace Jusul
 
     Dictionary<SkillBase, RuntimeSkillData> _skillInfos = new();
 
+    public bool CanAddNewSkill => _totalSkillCount < _maxSkillCount;
+
     public void InitializeOnStart(int laneIndex, CharacterModel character)
     {
       _laneIndex = laneIndex;
@@ -240,7 +242,7 @@ namespace Jusul
       return pickedSkill;
     }
 
-    public SkillBase TryMineSkill(SkillRarity rarity)
+    public SkillBase TryMineSkill(in SkillRarity rarity)
     {
       if (_totalSkillCount >= _maxSkillCount)
       {
@@ -252,7 +254,7 @@ namespace Jusul
       // 최종적으로 뽑은 스킬
       SkillBase pickedSkill = _skillTable.GetSkill(attribute, rarity);
 
-      return null;
+      return pickedSkill;
     }
 
     // AI 쪽에서 호출

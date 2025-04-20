@@ -9,7 +9,7 @@ namespace Jusul
   /// 빔(Beam) 이펙트 효과를 제어한다.
   /// </summary>
   [DisallowMultipleComponent]
-  public class BeamEffectManager : MonoBehaviour
+  public class BeamEffectManager : MonoBehaviour, ISingleton
   {
     [Header("생성할 빔 프리팹")][Space]
     [SerializeField] BeamEffect _beamPrefab;
@@ -17,16 +17,16 @@ namespace Jusul
     static BeamEffectManager _instance;
     public static BeamEffectManager Instance => _instance;
 
+    public void InitializeSingleton()
+    {
+      _instance = this;
+    }
+
     public void StartBeamEffect(Vector3 start, Vector3 end, Action onHit)
     {
       BeamEffect beam = Instantiate(_beamPrefab, start, Quaternion.identity);
       beam.Initialize(start, end, onHit);
       beam.Activate();
     } 
-
-    void Awake()
-    {
-      _instance = this;
-    }
   }
 }

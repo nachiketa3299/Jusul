@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Jusul
 {
-  public class LaneManager : MonoBehaviour
+  public class LaneManager : MonoBehaviour, ISingleton
   {
     [Header("레인 씬 레퍼런스(인덱스 순으로 정렬)")][Space]
     [SerializeField] List<Lane> _lanes = new(4);
@@ -12,7 +12,7 @@ namespace Jusul
     static LaneManager _instance;
     public static LaneManager Instance => _instance;
 
-    void Awake()
+    public void InitializeSingleton()
     {
       _instance = this;
 
