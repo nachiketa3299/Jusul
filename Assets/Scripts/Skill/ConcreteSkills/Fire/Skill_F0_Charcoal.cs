@@ -13,7 +13,7 @@ namespace Jusul
       Vector3 castingPosition = caster.CastingPosition.position;
 
       ProjectileBase projectile = Instantiate(ProjectilePrefab, castingPosition, Quaternion.identity);
-      projectile.Initialize(laneIndex, this, finalDamage);
+      projectile.InitializeAfterInstantiation(new ProjectileInitData(laneIndex, this, finalDamage));
 
       projectile.Activate();
     }

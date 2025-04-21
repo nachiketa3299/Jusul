@@ -24,7 +24,7 @@ namespace Jusul
         Destroy(gameObject);
       }
 
-      if (collision.TryGetComponent<Enemy>(out var enemy))
+      if (collision.TryGetComponent<EnemyBase>(out var enemy))
       {
         if (enemy.LaneIndex == _laneIndex)
         {

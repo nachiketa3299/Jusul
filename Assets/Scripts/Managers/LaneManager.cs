@@ -32,12 +32,12 @@ namespace Jusul
       return _lanes[laneIndex].IsGameOvered;
     }
 
-    public void SpawnEnemyAtLane(int laneIndex, Enemy enemyPrefab)
+    public void SpawnEnemyAtLane(int laneIndex, EnemyBase enemyPrefab)
     {
       _lanes[laneIndex].PushEnemy(enemyPrefab);
     }
 
-    public void RemoveEnemyAtLane(int laneIndex, Enemy enemy)
+    public void RemoveEnemyAtLane(int laneIndex, EnemyBase enemy)
     {
       _lanes[laneIndex].PopEnemy(enemy);
     }
@@ -62,7 +62,7 @@ namespace Jusul
       _lanes[laneIndex].AddRewardToPlayer(reward);
     }
 
-    public List<Enemy> GetEnemyListAtLane(int laneIndex)
+    public List<EnemyBase> GetEnemyListAtLane(int laneIndex)
     {
       return _lanes[laneIndex].GetEnemyList();
     }

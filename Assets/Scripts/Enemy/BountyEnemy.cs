@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Jusul
 {
-  public class BountyEnemy : Enemy
+  public class BountyEnemy : EnemyBase
   {
     [SerializeField] int _timeLimitSeconds = 10;
     [SerializeField] SpriteRenderer _spriteRenderer;
@@ -18,9 +18,9 @@ namespace Jusul
     public RewardEntry Reward => _reward;
     public Sprite Sprite => _spriteRenderer.sprite;
 
-    public override void Initialize(int laneIndex)
+    public override void InitializeAfterInstantiation(int laneIndex)
     {
-      base.Initialize(laneIndex);
+      base.InitializeAfterInstantiation(laneIndex);
 
       _healthBar.gameObject.SetActive(true);
     }

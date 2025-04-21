@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace Jusul
 {
   [DisallowMultipleComponent]
-  public class Enemy : MonoBehaviour
+  public class EnemyBase : MonoBehaviour
   {
     // TODO: HealthBar 별도의 컴포넌트로 떼기
     // TODO: Enemy는 UI 요소를 알지 못해도 되도록 하기
@@ -26,10 +26,9 @@ namespace Jusul
 
     protected int _laneIndex;
 
-    public event Action<Enemy, SkillBase, int> EnemyDamagedBySkill;
+    public event Action<EnemyBase, SkillBase, int> EnemyDamagedBySkill;
 
     public int LaneIndex => _laneIndex;
-    public void SetLaneIndex(int laneIndex) => _laneIndex = laneIndex;
 
     protected int _currentHealth;
 
@@ -38,12 +37,18 @@ namespace Jusul
 
     Transform _stopPivot;
 
-    void OnEnemyDamagedBySkill(Enemy enemy, SkillBase skill, int finalDamage)
+    StatusEffect _statusEffect;
+
+    public StatusEffect StatusEffect => _statusEffect;
+
+    public void SetLaneIndex(int laneIndex) => _laneIndex = laneIndex;
+
+    void OnEnemyDamagedBySkill(EnemyBase enemy, SkillBase skill, int finalDamage)
     {
       DamageIndicationManager.Instance.IndicateDamage(this, skill, finalDamage);
     }
 
-    public virtual void Initialize(int laneIndex)
+    public virtual void InitializeAfterInstantiation(int laneIndex)
     {
       _laneIndex = laneIndex;
 
@@ -53,6 +58,8 @@ namespace Jusul
       _healthBar.gameObject.SetActive(false);
 
       _stopPivot = LaneManager.Instance.GetLaneAt(_laneIndex).EnemyStopPivot;
+
+      _statusEffect = StatusEffect.None;
 
       EnemyDamagedBySkill += OnEnemyDamagedBySkill;
     }

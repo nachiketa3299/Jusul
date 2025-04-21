@@ -23,4 +23,4 @@ MonoBehaviour:
   AttackType: 2
   Rarity: 1
   Attribute: 1
-  ProjectilePrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 1003669915537715745, guid: e300061a913b58f4f998157a658c1496, type: 3}

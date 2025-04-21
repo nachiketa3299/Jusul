@@ -30,7 +30,7 @@ namespace Jusul
         Destroy(gameObject);
       }
 
-      if (collision.TryGetComponent<Enemy>(out var enemy))
+      if (collision.TryGetComponent<EnemyBase>(out var enemy))
       {
         enemy.ApplyDamage(_skillBase, _finalDamage);
         --_count;

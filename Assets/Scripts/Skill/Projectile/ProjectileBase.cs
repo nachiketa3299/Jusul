@@ -3,21 +3,19 @@ using UnityEngine;
 namespace Jusul
 {
   [DisallowMultipleComponent]
-  public abstract class ProjectileBase : MonoBehaviour
+  public abstract class ProjectileBase : MonoBehaviour, IInitializeAfterInstantiation<ProjectileInitData>
   {
-    [SerializeField] protected DamageIndicator _damageTextPrefab;
     [SerializeField] protected float _speed = 1.0f;
 
     protected SkillBase _skillBase;
     protected int _finalDamage;
-
     protected int _laneIndex;
 
-    public void Initialize(int laneIndex, SkillBase skillBase, int finalDamage)
+    public virtual void InitializeAfterInstantiation(ProjectileInitData initData)
     {
-      _laneIndex = laneIndex;
-      _skillBase = skillBase;
-      _finalDamage = finalDamage;
+      _laneIndex = initData.LaneIndex;
+      _skillBase = initData.SkillBase;
+      _finalDamage = initData.FinalDamage;
     }
 
     public virtual void Activate() {}

@@ -32,7 +32,7 @@ namespace Jusul
         Destroy(gameObject);
       }
 
-      if (collision.TryGetComponent<Enemy>(out var enemy))
+      if (collision.TryGetComponent<EnemyBase>(out var enemy))
       {
         Vector2 collisionPoint = collision.ClosestPoint(transform.position);
 
@@ -41,7 +41,7 @@ namespace Jusul
 
         foreach (Collider2D hitEnemy in hitEnemies)
         {
-          if (hitEnemy.TryGetComponent<Enemy>(out var inRadiusEnemy))
+          if (hitEnemy.TryGetComponent<EnemyBase>(out var inRadiusEnemy))
           {
             // 같은 레인에 있는 경우에만 타격
             if (inRadiusEnemy.LaneIndex == _laneIndex)

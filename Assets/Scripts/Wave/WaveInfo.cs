@@ -13,7 +13,7 @@ namespace Jusul
     [Serializable]
     public class WaveEntry
     {
-      public Enemy EnemyPrefab;
+      public EnemyBase EnemyPrefab;
       public int Count;
     }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Jusul
@@ -9,7 +10,7 @@ namespace Jusul
   [CreateAssetMenu(fileName ="Skill_F1_Burn", menuName ="Jusul/Skill/F1_Burn")]
   public class SKill_F1_Burn : SkillBase
   {
-    // int _maxAttempt = 3;
+    int _maxAttempt = 3;
 
     public override void Fire(CharacterModel caster, int laneIndex, int finalDamage)
     {
@@ -17,27 +18,36 @@ namespace Jusul
 
       // 레인에서 적들 리스트 가져오기
 
-      List<Enemy> enemies = LaneManager.Instance.GetEnemyListAtLane(laneIndex);
+      List<EnemyBase> enemies = LaneManager.Instance.GetEnemyListAtLane(laneIndex);
 
+      // 발사 순간 레인에 아무 적도 없으면 그냥 넘김
       if (enemies.Count == 0)
       {
         return;
       }
 
-      // int attempt = 0;
+      int attempt = 0;
+      EnemyBase target;
+      bool isAlreadyBurntEnemy = false;
 
-      // Enemy target;
+      do 
+      {
+        target = enemies[Random.Range(0, enemies.Count)];
+        ++attempt;
+        isAlreadyBurntEnemy = target.StatusEffect == StatusEffect.Burn;
 
-      // do
-      // {
-      //   target = enemies[Random.Range(0, enemies.Count)];;
-      //   ++attempt;
-      // } while (target.StatusEffect != StatusEffect.None && attempt < _maxAttempt);
+      } while (isAlreadyBurntEnemy && attempt < _maxAttempt);
 
-      // if (target.StatusEffect == StatusEffect.None)
-      // {
-      //   target.SetStatusEffect(StatusEffect.Burn);
-      // }
+      if (isAlreadyBurntEnemy)
+      {
+        return;
+      }
+
+      // 여기까지 와야 EnemyBase가 지정됨
+
+      ProjectileBase projectile = Instantiate(ProjectilePrefab, target.transform);
+      projectile.InitializeAfterInstantiation(new Projectile_BurnInitData(laneIndex, this, finalDamage, target));
+      projectile.Activate();
     }
   }
 }

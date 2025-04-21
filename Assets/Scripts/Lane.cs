@@ -14,7 +14,7 @@ namespace Jusul
     [SerializeField] Transform _enemySpawnPivot;
     [SerializeField] Transform _enemyStopPivot;
 
-    List<Enemy> _enemies = new();
+    List<EnemyBase> _enemies = new();
     JusulCharacterControllerBase _controller;
     CharacterModel _character;
 
@@ -27,15 +27,18 @@ namespace Jusul
     public Transform CharacterPivot => _characterPivot;
     public Transform EnemyStopPivot => _enemyStopPivot;
 
-    public void PushEnemy(Enemy enemyPrefab)
+    public void PushEnemy(EnemyBase enemyPrefab)
     {
       Vector3 position = _enemySpawnPivot.position;
-      Enemy enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
-      enemy.Initialize(LaneIndex);
+      EnemyBase enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+      enemy.InitializeAfterInstantiation(LaneIndex);
+
+      _enemies.Add(enemy);
+
       enemy.StartAdvanceRoutine();
     }
 
-    public void PopEnemy(Enemy enemy)
+    public void PopEnemy(EnemyBase enemy)
     {
       _enemies.Remove(enemy);
     }
@@ -61,7 +64,7 @@ namespace Jusul
       return _character;
     }
 
-    public List<Enemy> GetEnemyList()
+    public List<EnemyBase> GetEnemyList()
     {
       return _enemies;
     }

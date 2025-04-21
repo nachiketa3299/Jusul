@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Jusul
 {
-  public class BossEnemy : Enemy
+  public class BossEnemy : EnemyBase
   {
     [SerializeField] TMP_Text healthCount;
 
-    public override void Initialize(int laneIndex)
+    public override void InitializeAfterInstantiation(int laneIndex)
     {
-      base.Initialize(laneIndex);
+      base.InitializeAfterInstantiation(laneIndex);
 
       _healthBar.gameObject.SetActive(true);
     }

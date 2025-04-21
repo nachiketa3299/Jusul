@@ -22,7 +22,7 @@ namespace Jusul
 
     /// <param name="skill">추후 데미지 인디케이션이 확장되는 경우를 위하여, <see cref="SkillBase"/> 
     /// 자체를 넘기는 것으로 </param>
-    public void Initialize(Enemy enemy, SkillBase skill, int finalDamage)
+    public void Initialize(EnemyBase enemy, SkillBase skill, int finalDamage)
     {
       _skill = skill;
       _damageText.text = finalDamage.ToString();

@@ -16,7 +16,7 @@ namespace Jusul
       castingPosition.x += randomPositionIndex * _offsetX;
 
       ProjectileBase projectile = Instantiate(ProjectilePrefab, castingPosition, Quaternion.identity);
-      projectile.Initialize(laneIndex, this, finalDamage);
+      projectile.InitializeAfterInstantiation(new ProjectileInitData(laneIndex, this, finalDamage));
 
       projectile.Activate();
     }

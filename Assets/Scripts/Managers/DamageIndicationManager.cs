@@ -11,7 +11,7 @@ namespace Jusul
     static DamageIndicationManager _instance;
     public static DamageIndicationManager Instance => _instance;
 
-    public void IndicateDamage(Enemy enemy, SkillBase skill, int finalDamage)
+    public void IndicateDamage(EnemyBase enemy, SkillBase skill, int finalDamage)
     {
       DamageIndicator indicator = Instantiate(_damageIndicatorPrefab, transform);
       indicator.Initialize(enemy, skill, finalDamage);
