@@ -2,8 +2,13 @@ using UnityEngine;
 
 namespace Jusul
 {
+  public interface IInitializeAfterInstantiation<T>
+  {
+    public void InitializeAfterInstantiation(T initData);
+  }
+
   [DisallowMultipleComponent]
-  public abstract class ProjectileBase : MonoBehaviour, IInitializeAfterInstantiation<ProjectileInitData>
+  public abstract class ProjectileBase : MonoBehaviour, IInitializeAfterInstantiation<ProjectileBase_InitData>
   {
     [SerializeField] protected float _speed = 1.0f;
 
@@ -11,7 +16,7 @@ namespace Jusul
     protected int _finalDamage;
     protected int _laneIndex;
 
-    public virtual void InitializeAfterInstantiation(ProjectileInitData initData)
+    public virtual void InitializeAfterInstantiation(ProjectileBase_InitData initData)
     {
       _laneIndex = initData.LaneIndex;
       _skillBase = initData.SkillBase;

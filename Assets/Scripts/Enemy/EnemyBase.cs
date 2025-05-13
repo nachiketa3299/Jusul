@@ -26,6 +26,8 @@ namespace Jusul
 
     protected int _laneIndex;
 
+    public event Action<EnemyBase, int> EnemyHealthInitialized;
+
     public event Action<EnemyBase, SkillBase, int> EnemyDamagedBySkill;
 
     public int LaneIndex => _laneIndex;
@@ -40,8 +42,6 @@ namespace Jusul
     StatusEffect _statusEffect;
 
     public StatusEffect StatusEffect => _statusEffect;
-
-    public void SetLaneIndex(int laneIndex) => _laneIndex = laneIndex;
 
     void OnEnemyDamagedBySkill(EnemyBase enemy, SkillBase skill, int finalDamage)
     {
@@ -61,6 +61,7 @@ namespace Jusul
 
       _statusEffect = StatusEffect.None;
 
+      EnemyHealthInitialized?.Invoke(this, _maxHealth);
       EnemyDamagedBySkill += OnEnemyDamagedBySkill;
     }
 

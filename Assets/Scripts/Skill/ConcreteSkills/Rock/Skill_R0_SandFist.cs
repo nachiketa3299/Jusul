@@ -27,7 +27,7 @@ namespace Jusul
       for (int i = 0; i < _offsets.Count; ++i)
       {
         ProjectileBase projectile = Instantiate(ProjectilePrefab);
-        projectile.InitializeAfterInstantiation(new ProjectileInitData(laneIndex, this, finalDamage));
+        projectile.InitializeAfterInstantiation(new ProjectileBase_InitData(laneIndex, this, finalDamage));
 
         // 부모 좌표 + 오프셋을 월드 기준으로 설정
         projectile.transform.position = caster.CastingPosition.position + _offsets[i];

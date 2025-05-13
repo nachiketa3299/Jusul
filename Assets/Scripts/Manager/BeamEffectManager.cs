@@ -9,7 +9,7 @@ namespace Jusul
   /// 빔(Beam) 이펙트 효과를 제어한다.
   /// </summary>
   [DisallowMultipleComponent]
-  public class BeamEffectManager : MonoBehaviour, ISingleton
+  public class BeamEffectManager : MonoBehaviour
   {
     [Header("생성할 빔 프리팹")][Space]
     [SerializeField] BeamEffect _beamPrefab;

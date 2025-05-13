@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Jusul
 {
   [DisallowMultipleComponent]
-  public class WaveManager : MonoBehaviour, ISingleton
+  public class WaveManager : MonoBehaviour
   {
     [Header("Wave Table")][Space]
     [SerializeField] WaveInfoTable _waveTable;

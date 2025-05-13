@@ -46,7 +46,7 @@ namespace Jusul
       // 여기까지 와야 EnemyBase가 지정됨
 
       ProjectileBase projectile = Instantiate(ProjectilePrefab, target.transform);
-      projectile.InitializeAfterInstantiation(new Projectile_BurnInitData(laneIndex, this, finalDamage, target));
+      projectile.InitializeAfterInstantiation(new Projectile_Burn_InitData(laneIndex, this, finalDamage, target));
       projectile.Activate();
     }
   }

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Jusul
 {
   [DisallowMultipleComponent]
-  public class DamageIndicationManager : MonoBehaviour, ISingleton
+  public class DamageIndicationManager : MonoBehaviour
   {
     [Header("데이미 인디케이터 프리팹")][Space]
     [SerializeField] DamageIndicator _damageIndicatorPrefab;

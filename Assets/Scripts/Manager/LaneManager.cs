@@ -1,10 +1,11 @@
-using System;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Jusul
 {
-  public class LaneManager : MonoBehaviour, ISingleton
+  [DisallowMultipleComponent]
+  public class LaneManager : MonoBehaviour
   {
     [Header("레인 씬 레퍼런스(인덱스 순으로 정렬)")][Space]
     [SerializeField] List<Lane> _lanes = new(4);
@@ -18,7 +19,7 @@ namespace Jusul
 
       for (int laneIndex = 0; laneIndex < _lanes.Count; ++laneIndex)
       {
-        _lanes[laneIndex].LaneIndex = laneIndex;
+        _lanes[laneIndex].Initialize(laneIndex);
       }
     }
 

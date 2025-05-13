@@ -7,25 +7,28 @@ namespace Jusul
   [DisallowMultipleComponent]
   public class Lane : MonoBehaviour
   {
-    [Header("Character Setting")][Space]
+    [Header("캐릭터 위치 설정")][Space]
     [SerializeField] Transform _characterPivot;
 
-    [Header("Enemy Settings")][Space]
+    [Header("적 생성 및 정지 위치 설정")][Space]
     [SerializeField] Transform _enemySpawnPivot;
     [SerializeField] Transform _enemyStopPivot;
 
     List<EnemyBase> _enemies = new();
     JusulCharacterControllerBase _controller;
     CharacterModel _character;
-
-    public int LaneIndex { get; set; }
-
+    int _laneIndex;
     bool _isGameOvered = false;
 
+    public int LaneIndex => _laneIndex;
     public bool IsGameOvered => _isGameOvered;
-
     public Transform CharacterPivot => _characterPivot;
     public Transform EnemyStopPivot => _enemyStopPivot;
+
+    public void Initialize(int laneIndex)
+    {
+      _laneIndex = laneIndex;
+    }
 
     public void PushEnemy(EnemyBase enemyPrefab)
     {

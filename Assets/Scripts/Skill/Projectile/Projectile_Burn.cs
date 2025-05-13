@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Jusul
 {
-  public class Projectile_BurnInitData : ProjectileInitData
+  public class Projectile_Burn_InitData : ProjectileBase_InitData
   {
     public EnemyBase Target { get; private set; }
-    public Projectile_BurnInitData(int laneIndex, SkillBase skillBase, int finalDamage, EnemyBase target) : base(laneIndex, skillBase, finalDamage)
+    public Projectile_Burn_InitData(int laneIndex, SkillBase skillBase, int finalDamage, EnemyBase target) : base(laneIndex, skillBase, finalDamage)
     {
       Target = target;
     }
@@ -19,13 +19,11 @@ namespace Jusul
 
     EnemyBase _target;
 
-    public override void InitializeAfterInstantiation(ProjectileInitData initData)
+    public override void InitializeAfterInstantiation(ProjectileBase_InitData initData)
     {
       base.InitializeAfterInstantiation(initData);
 
-      _target = ((Projectile_BurnInitData)initData).Target;
-
-      if (initData is Projectile_BurnInitData burnInitData)
+      if (initData is Projectile_Burn_InitData burnInitData)
       {
         _target = burnInitData.Target;
       }
