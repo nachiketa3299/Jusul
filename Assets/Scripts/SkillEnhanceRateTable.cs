@@ -20,7 +20,7 @@ namespace Jusul
     {
       rate = 0f;
 
-      int listIndex = currentLevel + 1;
+      int listIndex = currentLevel - 1;
 
       if (listIndex < RateAtLevel.Count)
       {

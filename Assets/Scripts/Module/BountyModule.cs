@@ -20,6 +20,7 @@ namespace Jusul
 
     public void InitializeOnStart(int laneIndex)
     {
+      _laneIndex = laneIndex;
       // 바운티 타이머 시작
       StartCoroutine(BountyCooldownRoutine());
     }
